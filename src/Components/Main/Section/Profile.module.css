@@ -1,0 +1,10 @@
+.profile {
+    flex: 0 1 20%;
+}
+.item a{
+    color: green;
+}
+
+.item:last-child {
+    margin-top: 20px;
+}
