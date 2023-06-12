@@ -1,0 +1,26 @@
+
+.main{
+    flex: 1 1 auto;
+}
+
+.main__container   {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.content__picture {
+    flex: 0 1 70%;
+}
+
+
+.profile {
+    flex: 0 1 20%;
+}
+.profile__item a{
+    color: green;
+}
+
+.profile__item:last-child {
+    margin-top: 20px;
+}
