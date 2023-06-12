@@ -1,12 +1,12 @@
 import React from "react";
-import './Main.css';
+import main from './Main.module.css';
 
 
 
 export const Main = () => {
     return (
-        <div className="main">
-            <div className="main__container">
+        <div className={main.main}>
+            <div className={main.main__container}>
                 <Profile/>
                 <Body/>
             </div>
@@ -15,21 +15,22 @@ export const Main = () => {
 }
 
 const Profile = () => {
+
     return (
-        <nav className="profile">
-            <div className="profile__item">
+        <nav className={main.profile}>
+            <div className={main.item}>
                 <a href="#">Profile</a>
             </div>
-            <div className="profile__item">
+            <div className={main.item}>
                 <a href="#">Message</a>
             </div>
-            <div className="profile__item">
+            <div className={main.item}>
                 <a href="#">News</a>
             </div>
-            <div className="profile__item">
+            <div className={main.item}>
                 <a href="#">Music</a>
             </div>
-            <div className="profile__item">
+            <div className={main.item}>
                 <a href="#">Settings</a>
             </div>
         </nav>
