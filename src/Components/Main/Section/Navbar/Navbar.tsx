@@ -1,23 +1,24 @@
 import React from 'react';
-import profile from "./Profile.module.css";
+import navbar from "./Navbar.module.css";
 
 
-export const Profile = () => {
+
+export const Navbar = () => {
     return (
-        <nav className={profile.profile}>
-            <div className={profile.item}>
+        <nav className={navbar.profile}>
+            <div className={navbar.item}>
                 <a href="src/Components/Main/Main#">Profile</a>
             </div>
-            <div className={profile.item}>
+            <div className={navbar.item}>
                 <a href="src/Components/Main/Main#">Message</a>
             </div>
-            <div className={profile.item}>
+            <div className={navbar.item}>
                 <a href="src/Components/Main/Main#">News</a>
             </div>
-            <div className={profile.item}>
+            <div className={navbar.item}>
                 <a href="src/Components/Main/Main#">Music</a>
             </div>
-            <div className={profile.item}>
+            <div className={navbar.item}>
                 <a href="src/Components/Main/Main#">Settings</a>
             </div>
         </nav>
