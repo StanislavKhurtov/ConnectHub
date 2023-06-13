@@ -9,7 +9,7 @@ export const Main = () => {
         <div className={main.main}>
             <div className={main.main__container}>
                 <Navbar/>
-                <Profile/>
+                {/*<Profile/>*/}
             </div>
         </div>
     );
