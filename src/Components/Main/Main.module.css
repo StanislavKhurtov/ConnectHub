@@ -6,6 +6,8 @@
     display: flex;
 }
 
-
+.body {
+    flex: 0 1 80%;
+}
 
 
