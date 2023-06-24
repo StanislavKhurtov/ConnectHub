@@ -1,5 +1,6 @@
 .main{
     flex: 1 1 auto;
+    background-color: aqua;
 }
 
 .main__container   {
@@ -8,6 +9,7 @@
 
 .body {
     flex: 0 1 80%;
+
 }
 
 

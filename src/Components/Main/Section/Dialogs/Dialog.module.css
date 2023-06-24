@@ -3,4 +3,17 @@
     color: grey;
     font-size: 20px;
     background-color: darkblue;
+    height: 100%;
+    display: flex;
+    gap: 40px;
+}
+
+.item {
+    padding: 10px;
+}
+.items .active {
+    color: gold;
+}
+.message {
+    padding: 10px;
 }

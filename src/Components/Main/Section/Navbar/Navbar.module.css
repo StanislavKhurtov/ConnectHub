@@ -1,10 +1,16 @@
 .profile {
     flex: 0 1 20%;
+    padding: 20px;
 }
 .item a{
-    color: green;
+    color: black;
+    text-decoration: none;
+}
+.item a.active{
+    color:fuchsia;
 }
 
 .item:last-child {
     margin-top: 20px;
 }
+
