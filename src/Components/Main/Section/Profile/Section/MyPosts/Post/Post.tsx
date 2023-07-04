@@ -1,8 +1,9 @@
 import React from 'react';
 import post from "./Post.module.css"
 type PostType = {
+    id:number
     message: string
-    like: string
+    like: number
 }
 
 export const Post = (props: PostType) => {
