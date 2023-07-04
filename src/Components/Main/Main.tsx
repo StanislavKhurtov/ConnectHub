@@ -9,17 +9,27 @@ import {Settings} from "./Section/Settings/Settings";
 import {Music} from "./Section/Music/Music";
 
 
+let someComponents = () => <Profile/>
+
 export const Main = () => {
     return (
         <div className={main.main}>
             <div className={main.main__container}>
                 <Navbar/>
                 <div className={main.body}>
-                    <Route path='/dialogs' component={Profile}/>
+                  {/*  <Route path='/dialogs' component={Profile}/>
                     <Route path='/profile' component={Dialogs}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>
+                    <Route path='/settings' component={Settings}/>*/}
+
+
+                    <Route path='/dialogs' render={someComponents}/>
+                    <Route path='/profile' render={() => <Dialogs/>}/>
+                    <Route path='/news' render={() => <News/>}/>
+                    <Route path='/music' render={() => <Music/>}/>
+                    <Route path='/settings' render={() => <Settings/>}/>
+
                 </div>
             </div>
         </div>
