@@ -22,23 +22,38 @@ const Message =(props:any) => {
 
 
 export const Dialogs = (props:any) => {
+
+    let dialogsData = [
+        {id:1, name: "Stanislav"},
+        {id:1, name: "Egor"},
+        {id:1, name: "Sofia"},
+        {id:1, name: "Natalia"},
+        {id:1, name: "Alexey"},
+        {id:1, name: "Artur"},
+    ]
+
+    let messagesData = [
+        {id:1, message: "Hi"},
+        {id:2, message: "How is your it-kamasutra"},
+        {id:3, message: "yo"},
+        {id:4, message: "полный пипец"},
+        {id:5, message: "Hi"},
+    ]
+
+
     return (
         <div className={dialog.body}>
             <div className={dialog.items}>
-                <DialogItem name="Stanislav" id="1"/>
-                <DialogItem name="Egor" id="2"/>
-                <DialogItem name="Sofia" id="3"/>
-                <DialogItem name="Natalia" id="4"/>
-                <DialogItem name="Alexey" id="5"/>
-                <DialogItem name="Artur" id="6"/>
+                {dialogsData.map( el => {return(
+                    <DialogItem name={el.name} id={el.id}/>
+                )})}
             </div>
             <div className={dialog.messages}>
-
-                <Message message="Hi"/>
-                <Message message="How are you?"/>
-                <Message message="В пизду, дела пиздец"/>
-                <Message message="Yo!!!"/>
-
+                {messagesData.map(el=>{
+                    return(
+                        <Message message={el.message} id={el.id}/>
+                    );
+                })}
             </div>
         </div>
     );
