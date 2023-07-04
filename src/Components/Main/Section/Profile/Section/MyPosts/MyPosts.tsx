@@ -22,7 +22,6 @@ export const MyPosts = () => {
                         <Post id={el.id} message={el.message} like={el.likesCount} />
                     );
                 })}
-
             </div>
         </div>
     );
