@@ -4,12 +4,15 @@ import Post from "./Post/Post";
 import {PostType} from "../../../../../../Redux/State";
 
 
-
 type MyPostType = {
     posts: PostType[]
 }
 
-export const MyPosts = (props:MyPostType) => {
+export const MyPosts = (props: MyPostType) => {
+
+    const addPost = () => {
+        alert("hello")
+    }
 
     return (
         <div className={mp.wrapper}>
@@ -19,7 +22,7 @@ export const MyPosts = (props:MyPostType) => {
                     <textarea></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
 
