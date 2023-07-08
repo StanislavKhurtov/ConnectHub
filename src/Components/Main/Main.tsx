@@ -20,7 +20,6 @@ type MainProps = {
 export const Main: React.FC<MainProps> = (props) => {
     return (
         <div className={main.main}>
-
             <div className={main.main__container}>
                 <Navbar/>
                 <div className={main.body}>
