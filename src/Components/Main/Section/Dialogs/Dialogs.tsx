@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -24,13 +24,26 @@ export const Dialogs = (props: DialogsType) => {
         );
     })
 
+    let soob: RefObject<HTMLTextAreaElement> = React.createRef();
+
+    let addMessage = () => {
+        let text = soob.current?.value
+        alert(text)
+    }
+
     return (
-        <div className={dialog.body}>
-            <div className={dialog.items}>
-                {dialogsElements}
+        <div>
+            <div className={dialog.body}>
+                <div className={dialog.items}>
+                    {dialogsElements}
+                </div>
+                <div className={dialog.messages}>
+                    {messageElements}
+                </div>
             </div>
-            <div className={dialog.messages}>
-                {messageElements}
+            <div>
+                <textarea ref={soob}></textarea>
+                <button onClick={addMessage}>Add message</button>
             </div>
         </div>
     );
