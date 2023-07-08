@@ -1,25 +1,33 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import mp from './MyPost.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../../../../Redux/State";
-
 
 
 type MyPostType = {
     posts: PostType[]
 }
 
-export const MyPosts = (props:MyPostType) => {
+export const MyPosts = (props: MyPostType) => {
+
+    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
+
+    const addPost = () => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            alert(text);
+        }
+    }
 
     return (
         <div className={mp.wrapper}>
             <div>My Post</div>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
 
