@@ -7,24 +7,25 @@ import {Route} from "react-router-dom";
 import {News} from "./Section/News/News";
 import {Settings} from "./Section/Settings/Settings";
 import {Music} from "./Section/Music/Music";
-import {DialogsDataType, MessagesDataType, PostType} from "../../index";
+import {DialogsDataType, MessagesDataType, PostType} from "../../Redux/State";
+
 
 
 type MainProps = {
-    posts: Array<PostType>
-    dialogsData: Array<DialogsDataType>
-    messagesData: Array<MessagesDataType>
-}
+    posts: PostType[];
+    dialogs: DialogsDataType[];
+    messages: MessagesDataType[];
+};
 
-export const Main = (props: MainProps) => {
+export const Main: React.FC<MainProps> = (props) => {
     return (
         <div className={main.main}>
             <div className={main.main__container}>
                 <Navbar/>
                 <div className={main.body}>
                     <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogsData={props.dialogsData}
-                                                                  messagesData={props.messagesData}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs}
+                                                                  messages={props.messages}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>

@@ -4,12 +4,10 @@ import {Header} from "./Components/Header/Header";
 import {Main} from "./Components/Main/Main";
 import {Footer} from "./Components/Footer/Footer";
 import {BrowserRouter} from "react-router-dom";
-import {DialogsDataType, MessagesDataType, PostType} from "./index";
+import {StateProps} from "./Redux/State";
 
 type AppType = {
-    posts: Array<PostType>
-    dialogsData: Array<DialogsDataType>
-    messagesData: Array<MessagesDataType>
+    state: StateProps
 }
 
 const App = (props: AppType) => {
@@ -19,9 +17,9 @@ const App = (props: AppType) => {
             <div className="app-wrapper">
                 <Header/>
                 <Main
-                    posts={props.posts}
-                    dialogsData={props.dialogsData}
-                    messagesData={props.messagesData}/>
+                    posts={props.state.profilePage.posts}
+                    dialogs={props.state.dialogsPage.dialogs}
+                    messages={props.state.dialogsPage.messages}/>
                 <Footer/>
             </div>
         </BrowserRouter>

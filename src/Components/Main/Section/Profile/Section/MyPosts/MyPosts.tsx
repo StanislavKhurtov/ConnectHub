@@ -1,7 +1,7 @@
 import React from 'react';
 import mp from './MyPost.module.css';
 import Post from "./Post/Post";
-import {PostType} from "../../../../../../index";
+import {PostType} from "../../../../../../Redux/State";
 
 
 
