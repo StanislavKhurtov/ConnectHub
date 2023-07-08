@@ -1,9 +1,13 @@
 .item {
-    display: flex;
     color: red;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+
 }
 
 .item img  {
     width: 30px;
+    height: 30px;
     object-fit: cover;
+    border-radius: 50%;
 }

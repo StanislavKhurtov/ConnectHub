@@ -7,29 +7,27 @@ import {Route} from "react-router-dom";
 import {News} from "./Section/News/News";
 import {Settings} from "./Section/Settings/Settings";
 import {Music} from "./Section/Music/Music";
+import {DialogsDataType, MessagesDataType, PostType} from "../../index";
 
 
-let someComponents = () => <Profile/>
+type MainProps = {
+    posts: Array<PostType>
+    dialogsData: Array<DialogsDataType>
+    messagesData: Array<MessagesDataType>
+}
 
-export const Main = () => {
+export const Main = (props: MainProps) => {
     return (
         <div className={main.main}>
             <div className={main.main__container}>
                 <Navbar/>
                 <div className={main.body}>
-                  {/*  <Route path='/dialogs' component={Profile}/>
-                    <Route path='/profile' component={Dialogs}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music}/>
-                    <Route path='/settings' component={Settings}/>*/}
-
-
-                    <Route path='/dialogs' render={someComponents}/>
-                    <Route path='/profile' render={() => <Dialogs/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogsData={props.dialogsData}
+                                                                  messagesData={props.messagesData}/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
-
                 </div>
             </div>
         </div>
