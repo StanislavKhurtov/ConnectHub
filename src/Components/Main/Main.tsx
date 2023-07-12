@@ -15,6 +15,7 @@ type MainProps = {
     posts: PostType[];
     dialogs: DialogsDataType[];
     messages: MessagesDataType[];
+    addPost:(postMessage: string) =>void
 };
 
 export const Main: React.FC<MainProps> = (props) => {
@@ -23,7 +24,7 @@ export const Main: React.FC<MainProps> = (props) => {
             <div className={main.main__container}>
                 <Navbar/>
                 <div className={main.body}>
-                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.posts} addPost={props.addPost}/>}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs}
                                                                   messages={props.messages}/>}/>
                     <Route path='/news' render={() => <News/>}/>
