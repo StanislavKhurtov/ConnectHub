@@ -8,6 +8,7 @@ import {DialogsDataType, MessagesDataType} from "../../../../Redux/State";
 type DialogsType = {
     dialogs: Array<DialogsDataType>
     messages: Array<MessagesDataType>
+    addMessage: (message: string) => void
 }
 
 export const Dialogs = (props: DialogsType) => {
@@ -26,10 +27,13 @@ export const Dialogs = (props: DialogsType) => {
 
     let soob: RefObject<HTMLTextAreaElement> = React.createRef();
 
+
     let addMessage = () => {
-        let text = soob.current?.value
-        alert(text)
+        if (soob.current) {
+            props.addMessage(soob.current.value);
+        }
     }
+
 
     return (
         <div>
@@ -42,7 +46,7 @@ export const Dialogs = (props: DialogsType) => {
                 </div>
             </div>
             <div>
-                <textarea ref={soob}></textarea>
+                <textarea ref={soob}/>
                 <button onClick={addMessage}>Add message</button>
             </div>
         </div>
