@@ -9,6 +9,7 @@ type AppType = {
     state: StateProps
     addPost:() =>void
     updatePostText:(newText:string)=> void
+    addMessage:(message:string)=>void
 }
 
 const App = (props: AppType) => {
@@ -22,7 +23,9 @@ const App = (props: AppType) => {
                     newPostText={props.state.profilePage.newPostText}
                     updatePostText={props.updatePostText}
                     dialogs={props.state.dialogsPage.dialogs}
-                    messages={props.state.dialogsPage.messages}/>
+                    messages={props.state.dialogsPage.messages}
+                    addMessage={props.addMessage}
+                />
                 <Footer/>
             </div>
     );
