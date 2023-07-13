@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {App} from './App';
 import { BrowserRouter } from "react-router-dom";
 import {addMessage, addPost, state, StateProps, subscrube, updatePostText} from "./Redux/State";
 
 
-const rerenderEntireTree = (state: StateProps) => {
+const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App
@@ -20,6 +20,6 @@ const rerenderEntireTree = (state: StateProps) => {
     );
 }
 
-rerenderEntireTree(state);
+rerenderEntireTree();
 
 subscrube(rerenderEntireTree)

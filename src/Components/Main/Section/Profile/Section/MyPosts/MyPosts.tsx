@@ -20,11 +20,11 @@ export const MyPosts = (props: MyPostType) => {
             props.addPost();
         }
 
+
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.updatePostText(e.currentTarget.value)
-
     }
 
     return (

@@ -1,4 +1,4 @@
-let rerenderEntireTree = (state: StateProps) => {
+let rerenderEntireTree = () => {
     console.log('State was changed')
 }
 
@@ -65,18 +65,18 @@ export let state: StateProps = {
 export const addPost = () => {
     let newPost = {id: 5, message: state.profilePage.newPostText, likesCount: 0};
     state.profilePage.posts.push(newPost);
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export const updatePostText = (newText: string) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export const addMessage = (message: string) => {
     let newMessage = {id: 6, message: message};
     state.dialogsPage.messages.push(newMessage);
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export const subscrube = (observer: any) => {

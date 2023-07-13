@@ -12,7 +12,7 @@ type AppType = {
     addMessage:(message:string)=>void
 }
 
-const App = (props: AppType) => {
+export const App = (props: AppType) => {
     return (
         <div className="app-wrapper">
             <Header/>
@@ -30,4 +30,4 @@ const App = (props: AppType) => {
     );
 }
 
-export default App;
+
