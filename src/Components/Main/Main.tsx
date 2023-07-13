@@ -18,6 +18,7 @@ type MainProps = {
     messages: MessagesDataType[];
     addPost:() =>void
     updatePostText:(newText:string)=> void
+    addMessage:(message:string)=>void
 };
 
 export const Main: React.FC<MainProps> = (props) => {
@@ -28,7 +29,9 @@ export const Main: React.FC<MainProps> = (props) => {
                 <div className={main.body}>
                     <Route path='/profile' render={() => <Profile posts={props.posts} newPostText={props.newPostText} addPost={props.addPost} updatePostText={props.updatePostText}/>}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs}
-                                                                  messages={props.messages}/>}/>
+                                                                  messages={props.messages}
+                                                                  addMessage={props.addMessage}
+                    />}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
                     <Route path='/settings' render={() => <Settings/>}/>
