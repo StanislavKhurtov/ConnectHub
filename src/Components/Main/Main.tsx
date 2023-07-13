@@ -13,9 +13,11 @@ import {DialogsDataType, MessagesDataType, PostType} from "../../Redux/State";
 
 type MainProps = {
     posts: PostType[];
+    newPostText: string
     dialogs: DialogsDataType[];
     messages: MessagesDataType[];
-    addPost:(postMessage: string) =>void
+    addPost:() =>void
+    updatePostText:(newText:string)=> void
 };
 
 export const Main: React.FC<MainProps> = (props) => {
@@ -24,7 +26,7 @@ export const Main: React.FC<MainProps> = (props) => {
             <div className={main.main__container}>
                 <Navbar/>
                 <div className={main.body}>
-                    <Route path='/profile' render={() => <Profile posts={props.posts} addPost={props.addPost}/>}/>
+                    <Route path='/profile' render={() => <Profile posts={props.posts} newPostText={props.newPostText} addPost={props.addPost} updatePostText={props.updatePostText}/>}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs}
                                                                   messages={props.messages}/>}/>
                     <Route path='/news' render={() => <News/>}/>
