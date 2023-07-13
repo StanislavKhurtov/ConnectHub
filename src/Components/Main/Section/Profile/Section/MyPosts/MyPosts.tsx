@@ -16,7 +16,6 @@ export const MyPosts = (props: MyPostType) => {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const addPost = () => {
-
         if (newPostElement.current) {
             props.addPost();
         }
