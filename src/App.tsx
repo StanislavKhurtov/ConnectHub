@@ -13,21 +13,20 @@ type AppType = {
 }
 
 const App = (props: AppType) => {
-
     return (
-            <div className="app-wrapper">
-                <Header/>
-                <Main
-                    addPost={props.addPost}
-                    posts={props.state.profilePage.posts}
-                    newPostText={props.state.profilePage.newPostText}
-                    updatePostText={props.updatePostText}
-                    dialogs={props.state.dialogsPage.dialogs}
-                    messages={props.state.dialogsPage.messages}
-                    addMessage={props.addMessage}
-                />
-                <Footer/>
-            </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Main
+                addPost={props.addPost}
+                posts={props.state.profilePage.posts}
+                newPostText={props.state.profilePage.newPostText}
+                updatePostText={props.updatePostText}
+                dialogs={props.state.dialogsPage.dialogs}
+                messages={props.state.dialogsPage.messages}
+                addMessage={props.addMessage}
+            />
+            <Footer/>
+        </div>
     );
 }
 
