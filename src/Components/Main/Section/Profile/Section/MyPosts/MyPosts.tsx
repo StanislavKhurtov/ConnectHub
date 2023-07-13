@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React, {ChangeEvent, RefObject} from 'react';
 import mp from './MyPost.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../../../../Redux/State";
@@ -6,7 +6,9 @@ import {PostType} from "../../../../../../Redux/State";
 
 type MyPostType = {
     posts: PostType[]
-    addPost: (postMessage: string) => void
+    newPostText: string
+    addPost: () => void
+    updatePostText: (newText: string) => void
 }
 
 export const MyPosts = (props: MyPostType) => {
@@ -14,22 +16,24 @@ export const MyPosts = (props: MyPostType) => {
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const addPost = () => {
-        debugger
+
         if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.addPost(text);
-            newPostElement.current.value="";
+            props.addPost();
         }
 
     }
 
+    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updatePostText(e.currentTarget.value)
+
+    }
 
     return (
         <div className={mp.wrapper}>
             <div>My Post</div>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
