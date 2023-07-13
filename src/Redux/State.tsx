@@ -68,10 +68,9 @@ export const updatePostText = (newText:string) => {
     rerenderEntireTree(state);
 }
 
-const addMessage =() => {
-    let newMessage = {id: 6, message: "все получилось!!!"};
-    state.dialogsPage.messages.push(newMessage)
-
-
+export const addMessage =(message:string) => {
+    let newMessage = {id: 6, message: message};
+    state.dialogsPage.messages.push(newMessage);
+    rerenderEntireTree(state);
 }
 
