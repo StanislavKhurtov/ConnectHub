@@ -15,13 +15,13 @@ export const Dialogs = (props: DialogsType) => {
 
     let dialogsElements = props.dialogs.map(el => {
         return (
-            <DialogItem name={el.name} id={el.id}/>
+            <DialogItem key={el.id} name={el.name} id={el.id}/>
         )
     })
 
     let messageElements = props.messages.map(el => {
         return (
-            <Message message={el.message} id={el.id}/>
+            <Message key={el.id} message={el.message} id={el.id}/>
         );
     })
 

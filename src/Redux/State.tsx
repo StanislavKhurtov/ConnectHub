@@ -42,11 +42,11 @@ export let store = {
         dialogsPage: {
             dialogs: [
                 {id: 1, name: "Stanislav"},
-                {id: 1, name: "Egor"},
-                {id: 1, name: "Sofia"},
-                {id: 1, name: "Natalia"},
-                {id: 1, name: "Alexey"},
-                {id: 1, name: "Artur"},
+                {id: 2, name: "Egor"},
+                {id: 3, name: "Sofia"},
+                {id: 4, name: "Natalia"},
+                {id: 5, name: "Alexey"},
+                {id: 6, name: "Artur"},
             ],
             messages: [
                 {id: 1, message: "Hi"},
