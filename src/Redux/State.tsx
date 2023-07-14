@@ -1,15 +1,17 @@
+import {v1} from "uuid";
+
 export type PostType = {
-    id: number
+    id: string
     message: string
     likesCount: number
 }
 export type DialogsDataType = {
-    id: number
+    id: string
     name: string
 }
 
 export type MessagesDataType = {
-    id: number
+    id: string
     message: string
 }
 
@@ -31,29 +33,29 @@ export let store = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: "Hi", likesCount: 15},
-                {id: 2, message: "How is your it-kamasutra", likesCount: 14},
-                {id: 3, message: "yo", likesCount: 9},
-                {id: 4, message: "полный пипец", likesCount: 10},
-                {id: 5, message: "Hi", likesCount: 25},
+                {id: v1(), message: "Hi", likesCount: 15},
+                {id: v1(), message: "How is your it-kamasutra", likesCount: 14},
+                {id: v1(), message: "yo", likesCount: 9},
+                {id: v1(), message: "полный пипец", likesCount: 10},
+                {id: v1(), message: "Hi", likesCount: 25},
             ],
             newPostText: '',
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: "Stanislav"},
-                {id: 2, name: "Egor"},
-                {id: 3, name: "Sofia"},
-                {id: 4, name: "Natalia"},
-                {id: 5, name: "Alexey"},
-                {id: 6, name: "Artur"},
+                {id: v1(), name: "Stanislav"},
+                {id: v1(), name: "Egor"},
+                {id: v1(), name: "Sofia"},
+                {id: v1(), name: "Natalia"},
+                {id: v1(), name: "Alexey"},
+                {id: v1(), name: "Artur"},
             ],
             messages: [
-                {id: 1, message: "Hi"},
-                {id: 2, message: "How is your it-kamasutra"},
-                {id: 3, message: "yo"},
-                {id: 4, message: "полный пипец"},
-                {id: 5, message: "Hi"},
+                {id: v1(), message: "Hi"},
+                {id: v1(), message: "How is your it-kamasutra"},
+                {id: v1(), message: "yo"},
+                {id: v1(), message: "полный пипец"},
+                {id: v1(), message: "Hi"},
             ],
         },
 
@@ -65,7 +67,7 @@ export let store = {
         console.log('State changed')
     },
     addPost() {
-        let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0};
+        let newPost = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0};
         this._state.profilePage.posts.push(newPost);
         this._callSubscriber(this._state);
     },
@@ -74,7 +76,7 @@ export let store = {
         this._callSubscriber(this._state);
     },
     addMessage(message: string) {
-        let newMessage = {id: 6, message: message};
+        let newMessage = {id: v1(), message: message};
         this._state.dialogsPage.messages.push(newMessage);
         this._callSubscriber(this._state);
     },

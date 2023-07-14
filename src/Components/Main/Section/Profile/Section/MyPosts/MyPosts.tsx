@@ -4,6 +4,7 @@ import Post from "./Post/Post";
 import {PostType} from "../../../../../../Redux/State";
 
 
+
 type MyPostType = {
     posts: PostType[]
     newPostText: string
@@ -19,8 +20,6 @@ export const MyPosts = (props: MyPostType) => {
         if (newPostElement.current) {
             props.addPost();
         }
-
-
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
