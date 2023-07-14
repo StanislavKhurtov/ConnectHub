@@ -3,23 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import { BrowserRouter } from "react-router-dom";
-import {addMessage, addPost, state, StateProps, subscrube, updatePostText} from "./Redux/State";
+import {StateProps, store} from "./Redux/State";
 
 
 const rerenderEntireTree = (state: StateProps) => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-                state={state}
-                addPost={addPost}
-                updatePostText={updatePostText}
-                addMessage={addMessage}
+                state={store.getState()}
+                addPost={store.addPost}
+                updatePostText={store.updatePostText}
+                addMessage={store.addMessage}
             />
         </BrowserRouter>,
         document.getElementById('root')
     );
 }
 
-rerenderEntireTree(state);
+rerenderEntireTree(store.getState());
 
-subscrube(rerenderEntireTree)
+store.subscrube(rerenderEntireTree)

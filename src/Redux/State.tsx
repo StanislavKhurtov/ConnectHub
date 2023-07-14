@@ -58,28 +58,32 @@ export let store = {
         },
 
     },
-    rerenderEntireTree(state: StateProps) {
+    getState() {
+        return this._state;
+    },
+    _callSubscriber(state: StateProps) {
         console.log('State changed')
     },
     addPost() {
-        let newPost = {id: 5, message: state.profilePage.newPostText, likesCount: 0};
-        state.profilePage.posts.push(newPost);
-        rerenderEntireTree(state);
+        let newPost = {id: 5, message: this._state.profilePage.newPostText, likesCount: 0};
+        this._state.profilePage.posts.push(newPost);
+        this._callSubscriber(this._state);
     },
     updatePostText(newText: string) {
-        state.profilePage.newPostText = newText;
-        rerenderEntireTree(state);
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state);
     },
     addMessage(message: string) {
         let newMessage = {id: 6, message: message};
-        state.dialogsPage.messages.push(newMessage);
-        rerenderEntireTree(state);
+        this._state.dialogsPage.messages.push(newMessage);
+        this._callSubscriber(this._state);
     },
     subscrube(observer: any) {
-        rerenderEntireTree = observer;
+        this._callSubscriber = observer;
     }
-
 }
+
+
 
 
 

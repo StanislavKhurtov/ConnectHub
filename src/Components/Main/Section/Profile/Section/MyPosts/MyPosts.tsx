@@ -41,7 +41,7 @@ export const MyPosts = (props: MyPostType) => {
 
             <div className={mp.posts}>{props.posts.map((el) => {
                 return (
-                    <Post id={el.id} message={el.message} like={el.likesCount}/>
+                    <Post key={el.id} id={el.id} message={el.message} like={el.likesCount}/>
                 );
             })}
             </div>
