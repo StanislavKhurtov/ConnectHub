@@ -1,15 +1,15 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {RefObject} from 'react';
 import mp from './MyPost.module.css';
 import Post from "./Post/Post";
-import {PostType} from "../../../../../../Redux/State";
-
+import {PostType,addPostAC,updateNewPostAC} from "../../../../../../Redux/State";
 
 
 type MyPostType = {
     posts: PostType[]
     newPostText: string
-    dispatch:any
+    dispatch: any
 }
+
 
 export const MyPosts = (props: MyPostType) => {
 
@@ -17,13 +17,15 @@ export const MyPosts = (props: MyPostType) => {
 
     const addPost = () => {
         if (newPostElement.current) {
-            props.dispatch({type: 'ADD-POST'});
+            props.dispatch(addPostAC());
         }
     }
 
     const onPostChange = () => {
-        let text =  newPostElement.current?.value;
-        props.dispatch({type:'UPDATE-NEW-POST', newText: text})
+        let text = newPostElement.current?.value;
+        if (text) {
+            props.dispatch(updateNewPostAC(text))
+        }
     }
 
     return (
