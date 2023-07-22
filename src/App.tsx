@@ -7,9 +7,7 @@ import {StateProps} from "./Redux/State";
 
 type AppType = {
     state: StateProps
-    addPost:() =>void
-    updatePostText:(newText:string)=> void
-    addMessage:(message:string)=>void
+    dispatch: any
 }
 
 export const App = (props: AppType) => {
@@ -17,13 +15,11 @@ export const App = (props: AppType) => {
         <div className="app-wrapper">
             <Header/>
             <Main
-                addPost={props.addPost}
+                dispatch={props.dispatch}
                 posts={props.state.profilePage.posts}
                 newPostText={props.state.profilePage.newPostText}
-                updatePostText={props.updatePostText}
                 dialogs={props.state.dialogsPage.dialogs}
                 messages={props.state.dialogsPage.messages}
-                addMessage={props.addMessage}
             />
             <Footer/>
         </div>
