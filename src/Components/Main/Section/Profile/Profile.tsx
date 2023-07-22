@@ -6,12 +6,10 @@ import profile from './Profile.module.css'
 import {PostType} from "../../../../Redux/State";
 
 
-
 type ProfileType = {
     posts: PostType[]
-    newPostText:string
-    addPost:() =>void
-    updatePostText:(newText:string)=> void
+    newPostText: string
+    dispatch: any
 }
 
 export const Profile = (props: ProfileType) => {
@@ -20,7 +18,11 @@ export const Profile = (props: ProfileType) => {
         <div className={profile.body}>
             <Image/>
             <Avatar/>
-            <MyPosts posts={props.posts} addPost={props.addPost} newPostText={props.newPostText} updatePostText={props.updatePostText}/>
+            <MyPosts
+                posts={props.posts}
+                newPostText={props.newPostText}
+                dispatch={props.dispatch}
+            />
         </div>
     );
 }
