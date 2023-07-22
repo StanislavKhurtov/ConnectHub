@@ -1,5 +1,11 @@
 import {v1} from "uuid";
 
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
+const ADD_NEW_MESSAGE = 'ADD-MESSAGE';
+
+
 export type PostType = {
     id: string
     message: string
@@ -52,11 +58,7 @@ export type AddMessageActionType = {
     message: string
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST ='UPDATE-NEW-POST';
-
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType;
 
 
 export let store: StoreType = {
@@ -88,8 +90,8 @@ export let store: StoreType = {
                 {id: v1(), message: "Hi"},
             ],
         },
-
     },
+
     _callSubscriber(state: StateProps) {
         console.log('State changed')
     },
@@ -114,7 +116,7 @@ export let store: StoreType = {
                 this._callSubscriber(this._state);
                 break;
             }
-            case 'ADD-MESSAGE': {
+            case ADD_NEW_MESSAGE: {
                 let newMessage = {id: v1(), message: action.message};
                 this._state.dialogsPage.messages.push(newMessage);
                 this._callSubscriber(this._state);
@@ -126,20 +128,16 @@ export let store: StoreType = {
     },
 }
 
-export const addPostAC = () => {
-    return {
-        type: ADD_POST
-    }
+export const addPostAC = (): AddPostActionType => {
+    return {type: ADD_POST}
 }
 
-export const updateNewPostAC = (text: string) => {
-    return {
-        type: UPDATE_NEW_POST,
-        newText: text
-    }
+export const updateNewPostAC = (text: string): UpdateNewPostTextActionType => {
+    return {type: UPDATE_NEW_POST, newText: text}
 }
-export const addMessageActionCreator = (textMessage:string) => {
-    return {type:'ADD-MESSAGE',message: textMessage}
+
+export const addMessageActionCreator = (textMessage: string): AddMessageActionType => {
+    return {type: ADD_NEW_MESSAGE, message: textMessage}
 }
 
 

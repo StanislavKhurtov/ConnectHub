@@ -35,7 +35,6 @@ export const Dialogs = (props: DialogsType) => {
         }
     }
 
-
     return (
         <div>
             <div className={dialog.body}>
@@ -44,12 +43,13 @@ export const Dialogs = (props: DialogsType) => {
                 </div>
                 <div className={dialog.messages}>
                     {messageElements}
+                    <div>
+                        <textarea ref={messageRef}/>
+                        <button onClick={addMessage}>Add message</button>
+                    </div>
                 </div>
             </div>
-            <div>
-                <textarea ref={messageRef}/>
-                <button onClick={addMessage}>Add message</button>
-            </div>
+
         </div>
     );
 };
