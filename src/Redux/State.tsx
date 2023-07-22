@@ -29,7 +29,33 @@ type DialogsPageType = {
     messages: MessagesDataType[]
 }
 
-export let store = {
+type StoreType = {
+    _state: StateProps
+    _callSubscriber: (state: StateProps) => void
+    getState: () => StateProps
+    subscribe: (callback: (state: StateProps) => void) => void
+    dispatch: (action: ActionsTypes) => void
+}
+
+
+export type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+export type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST'
+    newText: string
+}
+
+export type AddMessageActionType = {
+    type: 'ADD-MESSAGE'
+    message: string
+}
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType
+
+
+export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -60,28 +86,39 @@ export let store = {
         },
 
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber(state: StateProps) {
         console.log('State changed')
     },
-    addPost() {
-        let newPost = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0};
-        this._state.profilePage.posts.push(newPost);
-        this._callSubscriber(this._state);
+
+    getState() {
+        return this._state;
     },
-    updatePostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state);
-    },
-    addMessage(message: string) {
-        let newMessage = {id: v1(), message: message};
-        this._state.dialogsPage.messages.push(newMessage);
-        this._callSubscriber(this._state);
-    },
-    subscrube(observer: any) {
+    subscribe(observer: any) {
         this._callSubscriber = observer;
+    },
+
+    dispatch(action: ActionsTypes) {
+        switch (action.type) {
+            case 'ADD-POST': {
+                let newPost = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0};
+                this._state.profilePage.posts.push(newPost);
+                this._callSubscriber(this._state);
+                break;
+            }
+            case 'UPDATE-NEW-POST': {
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state);
+                break;
+            }
+            case 'ADD-MESSAGE': {
+                let newMessage = {id: v1(), message: action.message};
+                this._state.dialogsPage.messages.push(newMessage);
+                this._callSubscriber(this._state);
+                break;
+            }
+            default:
+                throw new Error("I don't understand this type")
+        }
     }
 }
 
