@@ -42,3 +42,4 @@
 38 - dispatch и action
 39 - action creator, action type
 40 - добавление Сообщения
+41 - reducer (почти redux)
