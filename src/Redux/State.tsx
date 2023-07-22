@@ -54,6 +54,10 @@ export type AddMessageActionType = {
 
 export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType
 
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST ='UPDATE-NEW-POST';
+
+
 
 export let store: StoreType = {
     _state: {
@@ -99,13 +103,13 @@ export let store: StoreType = {
 
     dispatch(action: ActionsTypes) {
         switch (action.type) {
-            case 'ADD-POST': {
+            case ADD_POST: {
                 let newPost = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0};
                 this._state.profilePage.posts.push(newPost);
                 this._callSubscriber(this._state);
                 break;
             }
-            case 'UPDATE-NEW-POST': {
+            case UPDATE_NEW_POST: {
                 this._state.profilePage.newPostText = action.newText;
                 this._callSubscriber(this._state);
                 break;
@@ -119,8 +123,26 @@ export let store: StoreType = {
             default:
                 throw new Error("I don't understand this type")
         }
+    },
+}
+
+export const addPostAC = () => {
+    return {
+        type: ADD_POST
     }
 }
+
+export const updateNewPostAC = (text: string) => {
+    return {
+        type: UPDATE_NEW_POST,
+        newText: text
+    }
+}
+export const addMessageActionCreator = (textMessage:string) => {
+    return {type:'ADD-MESSAGE',message: textMessage}
+}
+
+
 
 
 
