@@ -2,7 +2,7 @@ import React, {RefObject} from 'react';
 import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsDataType, MessagesDataType} from "../../../../Redux/State";
+import {DialogsDataType, MessagesDataType,addMessageActionCreator} from "../../../../Redux/State";
 
 
 type DialogsType = {
@@ -25,12 +25,13 @@ export const Dialogs = (props: DialogsType) => {
         );
     })
 
-    let soob: RefObject<HTMLTextAreaElement> = React.createRef();
+    let messageRef: RefObject<HTMLTextAreaElement> = React.createRef();
 
 
     let addMessage = () => {
-        if (soob.current) {
-            props.dispatch({type:'ADD-MESSAGE',message: soob.current.value});
+        let textMessage = messageRef.current?.value;
+        if (textMessage) {
+            props.dispatch(addMessageActionCreator(textMessage));
         }
     }
 
@@ -46,7 +47,7 @@ export const Dialogs = (props: DialogsType) => {
                 </div>
             </div>
             <div>
-                <textarea ref={soob}/>
+                <textarea ref={messageRef}/>
                 <button onClick={addMessage}>Add message</button>
             </div>
         </div>
