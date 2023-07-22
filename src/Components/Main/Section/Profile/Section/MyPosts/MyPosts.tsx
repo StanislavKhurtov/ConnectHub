@@ -8,8 +8,7 @@ import {PostType} from "../../../../../../Redux/State";
 type MyPostType = {
     posts: PostType[]
     newPostText: string
-    addPost: () => void
-    updatePostText: (newText: string) => void
+    dispatch:any
 }
 
 export const MyPosts = (props: MyPostType) => {
@@ -18,12 +17,13 @@ export const MyPosts = (props: MyPostType) => {
 
     const addPost = () => {
         if (newPostElement.current) {
-            props.addPost();
+            props.dispatch({type: 'ADD-POST'});
         }
     }
 
-    const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updatePostText(e.currentTarget.value)
+    const onPostChange = () => {
+        let text =  newPostElement.current?.value;
+        props.dispatch({type:'UPDATE-NEW-POST', newText: text})
     }
 
     return (
