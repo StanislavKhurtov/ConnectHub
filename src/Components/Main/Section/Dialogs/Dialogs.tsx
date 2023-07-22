@@ -8,7 +8,7 @@ import {DialogsDataType, MessagesDataType} from "../../../../Redux/State";
 type DialogsType = {
     dialogs: Array<DialogsDataType>
     messages: Array<MessagesDataType>
-    addMessage: (message: string) => void
+    dispatch:any
 }
 
 export const Dialogs = (props: DialogsType) => {
@@ -30,7 +30,7 @@ export const Dialogs = (props: DialogsType) => {
 
     let addMessage = () => {
         if (soob.current) {
-            props.addMessage(soob.current.value);
+            props.dispatch({type:'ADD-MESSAGE',message: soob.current.value});
         }
     }
 
