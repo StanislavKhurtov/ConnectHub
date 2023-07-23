@@ -1,7 +1,9 @@
 import React, {ChangeEvent, MouseEvent} from 'react';
 import mp from './MyPost.module.css';
 import Post from "./Post/Post";
-import {PostType,addPostAC,updateNewPostAC} from "../../../../../../Redux/State";
+import {PostType} from "../../../../../../Redux/type";
+import {addPostAC, updateNewPostAC} from "../../../../../../Redux/profile-reducer";
+
 
 
 type MyPostType = {
