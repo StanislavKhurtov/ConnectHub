@@ -3,7 +3,8 @@ import {Image} from "./Section/Image/Image";
 import {Avatar} from "./Section/Avatar/Avatar";
 import {MyPosts} from "./Section/MyPosts/MyPosts";
 import profile from './Profile.module.css'
-import {PostType} from "../../../../Redux/State";
+import {PostType} from "../../../../Redux/type";
+
 
 
 type ProfileType = {
