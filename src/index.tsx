@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import {BrowserRouter} from "react-router-dom";
-import {StateProps, store} from "./Redux/State";
+import {StateType, store} from "./Redux/State";
 
 
-const rerenderEntireTree = (state: StateProps) => {
+const rerenderEntireTree = (state: StateType) => {
     ReactDOM.render(
         <BrowserRouter>
             <App
@@ -17,6 +17,7 @@ const rerenderEntireTree = (state: StateProps) => {
         document.getElementById('root')
     );
 }
+
 
 rerenderEntireTree(store.getState());
 
