@@ -3,10 +3,11 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Main} from "./Components/Main/Main";
 import {Footer} from "./Components/Footer/Footer";
-import {StateProps} from "./Redux/State";
+import {StateType} from "./Redux/type";
+
 
 type AppType = {
-    state: StateProps
+    state: StateType
     dispatch: any
 }
 
