@@ -7,7 +7,7 @@ import {Route} from "react-router-dom";
 import {News} from "./Section/News/News";
 import {Settings} from "./Section/Settings/Settings";
 import {Music} from "./Section/Music/Music";
-import {DialogsDataType, MessagesDataType, PostType} from "../../Redux/State";
+import {DialogsDataType, MessagesDataType, PostType} from "../../Redux/type";
 
 
 type MainProps = {
