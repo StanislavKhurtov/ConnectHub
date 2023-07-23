@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsDataType, MessagesDataType, addMessageActionCreator} from "../../../../Redux/State";
+import {DialogsDataType, MessagesDataType} from "../../../../Redux/State";
+import {addMessageAC} from "../../../../Redux/dialogs-reducer";
+
 
 
 type DialogsType = {
@@ -30,7 +32,7 @@ export const Dialogs = (props: DialogsType) => {
 
     let addMessage = () => {
         if (messageText.trim() !== '') {
-            props.dispatch(addMessageActionCreator(messageText));
+            props.dispatch(addMessageAC(messageText));
             setMessageText('');
         }
     }
