@@ -41,6 +41,7 @@ type StoreType = {
     getState: () => StateProps
     subscribe: (callback: (state: StateProps) => void) => void
     dispatch: (action: ActionsTypes) => void
+
 }
 
 
@@ -90,6 +91,7 @@ export let store: StoreType = {
                 {id: v1(), message: "Hi"},
             ],
         },
+
     },
 
     _callSubscriber(state: StateProps) {
@@ -107,19 +109,28 @@ export let store: StoreType = {
         switch (action.type) {
             case ADD_POST: {
                 let newPost = {id: v1(), message: this._state.profilePage.newPostText, likesCount: 0};
-                this._state.profilePage.posts.push(newPost);
-                this._callSubscriber(this._state);
+                let newProfilePage = {
+                    ...this._state.profilePage,
+                    posts: [...this._state.profilePage.posts, newPost],
+                    newPostText: ''
+                };
+                this._callSubscriber({...this._state, profilePage: newProfilePage});
                 break;
             }
             case UPDATE_NEW_POST: {
-                this._state.profilePage.newPostText = action.newText;
+                let newProfilePage = {...this._state.profilePage, newPostText: action.newText};
+                let newState = {...this._state, profilePage: newProfilePage};
+                this._state = newState;
                 this._callSubscriber(this._state);
                 break;
             }
+
             case ADD_NEW_MESSAGE: {
                 let newMessage = {id: v1(), message: action.message};
-                this._state.dialogsPage.messages.push(newMessage);
-                this._callSubscriber(this._state);
+                let newDialogsPage = {
+                    ...this._state.dialogsPage, messages: [...this._state.dialogsPage.messages, newMessage]
+                };
+                this._callSubscriber({...this._state, dialogsPage: newDialogsPage});
                 break;
             }
             default:
