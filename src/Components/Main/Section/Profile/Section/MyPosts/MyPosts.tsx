@@ -15,7 +15,7 @@ type MyPostType = {
 export const MyPosts = (props: MyPostType) => {
 
     const addPost = (e:MouseEvent<HTMLButtonElement>) => {
-            props.dispatch(addPostAC());
+        props.dispatch(addPostAC());
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement> ) => {
@@ -30,7 +30,7 @@ export const MyPosts = (props: MyPostType) => {
             <div>My Post</div>
             <div>
                 <div>
-                    <textarea value={props.newPostText} onChange={onPostChange} />
+                    <textarea value={props.newPostText === '' ? '' : props.newPostText} onChange={onPostChange} />
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
@@ -46,4 +46,3 @@ export const MyPosts = (props: MyPostType) => {
         </div>
     );
 };
-

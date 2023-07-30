@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsDataType, MessagesDataType} from "../../../../Redux/State";
 import {addMessageAC} from "../../../../Redux/dialogs-reducer";
+import {DialogsDataType, MessagesDataType} from "../../../../Redux/type";
 
 
 

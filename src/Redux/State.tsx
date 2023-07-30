@@ -4,9 +4,6 @@ import {dialogsReducer} from "./dialogs-reducer";
 import {ActionsTypes, StateType, StoreType} from "./type";
 
 
-
-
-
 export let store: StoreType = {
     _state: {
         profilePage: {
