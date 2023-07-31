@@ -44,3 +44,4 @@
 40 - добавление Сообщения
 41 - reducer (почти redux)
 42 - Redux
+43 - container component (контейнерная компонента)
