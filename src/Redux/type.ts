@@ -27,6 +27,7 @@ export type DialogsPageType = {
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sidebar: {}
 }
 
 export type StoreType = {
