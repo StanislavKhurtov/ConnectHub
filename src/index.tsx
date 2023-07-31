@@ -4,7 +4,7 @@ import './index.css';
 import {App} from './App';
 import {BrowserRouter} from "react-router-dom";
 import {StateType} from "./Redux/type";
-import {store} from "./Redux/State";
+import {store} from "./Redux/store";
 
 
 
