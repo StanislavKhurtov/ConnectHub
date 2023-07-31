@@ -33,7 +33,7 @@ export let store: StoreType = {
                 {id: v1(), message: "Hi"},
             ],
         },
-
+        sidebar: {}, // добавлено поле sidebar
     },
 
     _callSubscriber(state: StateType) {
@@ -53,6 +53,8 @@ export let store: StoreType = {
         this._callSubscriber(this._state);
     }
 }
+
+
 
 
 
