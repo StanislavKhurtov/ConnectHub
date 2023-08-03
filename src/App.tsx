@@ -3,13 +3,13 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Main} from "./Components/Main/Main";
 import {Footer} from "./Components/Footer/Footer";
-import {StateType} from "./Redux/type";
+import {StateType, StoreType} from "./Redux/type";
 
 
 type AppType = {
-    state: StateType
     store: any
-    dispatch: any
+    state: StateType;
+    dispatch: (action: any) => void
 }
 
 export const App = (props: AppType) => {
@@ -17,8 +17,8 @@ export const App = (props: AppType) => {
         <div className="app-wrapper">
             <Header/>
             <Main
-               store={props.store}
-               dispatch={props.dispatch}
+                store={props.store}
+                dispatch={props.store.dispatch}
                 dialogs={props.state.dialogsPage.dialogs}
                 messages={props.state.dialogsPage.messages}
             />
