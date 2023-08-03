@@ -2,26 +2,27 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import mp from './MyPost.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../../../../Redux/type";
-import {addPostAC, updateNewPostAC} from "../../../../../../Redux/profile-reducer";
-
 
 
 type MyPostType = {
     posts: PostType[]
     newPostText: string
-    dispatch: any
+    addPost: any
+    updateNewPostText:any
 }
 
-export const MyPosts = (props: MyPostType) => {
 
-    const addPost = (e:MouseEvent<HTMLButtonElement>) => {
-        props.dispatch(addPostAC());
+
+export const MyPosts = (props:MyPostType) => {
+
+    const onAddPost = (e:MouseEvent<HTMLButtonElement>) => {
+        props.addPost()
     }
 
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement> ) => {
         let text = e.currentTarget.value;
         if (text) {
-            props.dispatch(updateNewPostAC(text))
+            props.updateNewPostText(text)
         }
     }
 
@@ -33,11 +34,11 @@ export const MyPosts = (props: MyPostType) => {
                     <textarea value={props.newPostText === '' ? '' : props.newPostText} onChange={onPostChange} />
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
 
-            <div className={mp.posts}>{props.posts.map((el) => {
+            <div className={mp.posts}>{props.posts.map((el:any) => {
                 return (
                     <Post key={el.id} id={el.id} message={el.message} like={el.likesCount}/>
                 );
