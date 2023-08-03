@@ -11,8 +11,8 @@ import {DialogsDataType, MessagesDataType, PostType} from "../../Redux/type";
 
 
 type MainProps = {
-    posts: PostType[];
-    newPostText: string
+   store: any
+
     dialogs: DialogsDataType[];
     messages: MessagesDataType[];
     dispatch: any
@@ -25,9 +25,7 @@ export const Main: React.FC<MainProps> = (props) => {
                 <Navbar/>
                 <div className={main.body}>
                     <Route path='/profile' render={() => <Profile
-                        posts={props.posts}
-                        newPostText={props.newPostText}
-                        dispatch={props.dispatch}
+                      store={props.store}
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs
                         dialogs={props.dialogs}
