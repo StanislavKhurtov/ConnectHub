@@ -27,9 +27,7 @@ export const Main: React.FC<MainProps> = (props) => {
                       store={props.store}
                     />}/>
                     <Route path='/dialogs' render={() => <Dialogs
-                        dialogs={props.dialogs}
-                        messages={props.messages}
-                        dispatch={props.dispatch}
+                        store={props.store}
                     />}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
