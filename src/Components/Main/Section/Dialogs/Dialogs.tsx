@@ -3,14 +3,14 @@ import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {addMessageAC} from "../../../../Redux/dialogs-reducer";
-import {DialogsDataType, MessagesDataType} from "../../../../Redux/type";
+import {ActionsTypes, DialogsDataType, MessagesDataType} from "../../../../Redux/type";
 
 
 
 type DialogsType = {
     dialogs: Array<DialogsDataType>
     messages: Array<MessagesDataType>
-    dispatch: any
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const Dialogs = (props: DialogsType) => {

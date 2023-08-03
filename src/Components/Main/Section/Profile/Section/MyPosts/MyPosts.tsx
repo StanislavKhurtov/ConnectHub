@@ -7,11 +7,9 @@ import {PostType} from "../../../../../../Redux/type";
 type MyPostType = {
     posts: PostType[]
     newPostText: string
-    addPost: any
-    updateNewPostText:any
+    addPost: () => void
+    updateNewPostText: (text:string) => void
 }
-
-
 
 export const MyPosts = (props:MyPostType) => {
 

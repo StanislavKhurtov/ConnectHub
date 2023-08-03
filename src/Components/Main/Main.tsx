@@ -7,14 +7,14 @@ import {Route} from "react-router-dom";
 import {News} from "./Section/News/News";
 import {Settings} from "./Section/Settings/Settings";
 import {Music} from "./Section/Music/Music";
-import {DialogsDataType, MessagesDataType, StoreType} from "../../Redux/type";
+import {ActionsTypes, DialogsDataType, MessagesDataType, StoreType} from "../../Redux/type";
 
 
 type MainProps = {
     store: StoreType;
     dialogs: DialogsDataType[];
     messages: MessagesDataType[];
-    dispatch: (action: any) => void;
+    dispatch: (action: ActionsTypes) => void;
 };
 
 export const Main: React.FC<MainProps> = (props) => {

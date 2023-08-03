@@ -3,13 +3,14 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Main} from "./Components/Main/Main";
 import {Footer} from "./Components/Footer/Footer";
-import {StateType, StoreType} from "./Redux/type";
+import {AppRootState} from "./Redux/redux-store";
+import {ActionsTypes} from "./Redux/type";
 
 
 type AppType = {
     store: any
-    state: StateType;
-    dispatch: (action: any) => void
+    state: AppRootState
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const App = (props: AppType) => {

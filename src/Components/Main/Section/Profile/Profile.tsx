@@ -2,12 +2,12 @@ import React from 'react';
 import {Image} from "./Section/Image/Image";
 import {Avatar} from "./Section/Avatar/Avatar";
 import profile from './Profile.module.css'
-import {PostType} from "../../../../Redux/type";
+import {PostType, StoreType} from "../../../../Redux/type";
 import {MyPostsContainer} from "./Section/MyPosts/MyPostsContainer";
 
 
 type ProfileType = {
-    store: any
+    store: StoreType
 }
 
 export const Profile = (props: ProfileType) => {
