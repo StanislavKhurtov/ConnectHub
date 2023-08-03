@@ -8,6 +8,7 @@ import {StateType} from "./Redux/type";
 
 type AppType = {
     state: StateType
+    store: any
     dispatch: any
 }
 
@@ -16,9 +17,8 @@ export const App = (props: AppType) => {
         <div className="app-wrapper">
             <Header/>
             <Main
-                dispatch={props.dispatch}
-                posts={props.state.profilePage.posts}
-                newPostText={props.state.profilePage.newPostText}
+               store={props.store}
+               dispatch={props.dispatch}
                 dialogs={props.state.dialogsPage.dialogs}
                 messages={props.state.dialogsPage.messages}
             />
