@@ -54,4 +54,7 @@ export type AddMessageActionType = {
     message: string
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType;
+export type ActionsTypes =
+    AddPostActionType
+    | UpdateNewPostTextActionType
+    | AddMessageActionType;
