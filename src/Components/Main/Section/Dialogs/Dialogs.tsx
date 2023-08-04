@@ -4,15 +4,12 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {addMessageAC} from "../../../../Redux/dialogs-reducer";
 import {StoreType} from "../../../../Redux/type";
-
-type DialogsType = {
-    store: StoreType
-}
+import {store} from "../../../../Redux/redux-store";
 
 
-export const Dialogs = (props: DialogsType) => {
+export const Dialogs = () => {
 
-    let state = props.store.getState().dialogsPage;
+    let state = store.getState().dialogsPage;
 
     let dialogsElements = state.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
 
@@ -23,7 +20,7 @@ export const Dialogs = (props: DialogsType) => {
 
     let addMessage = () => {
         if (messageText.trim() !== '') {
-            props.store.dispatch(addMessageAC(messageText));
+           store.dispatch(addMessageAC(messageText));
             setMessageText('');
         }
     }
@@ -35,7 +32,7 @@ export const Dialogs = (props: DialogsType) => {
     const onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') {
             if (messageText.trim() !== '') {
-                props.store.dispatch(addMessageAC(messageText));
+                store.dispatch(addMessageAC(messageText));
                 setMessageText('');
             }
         }

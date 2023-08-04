@@ -1,21 +1,21 @@
 import { connect } from 'react-redux';
 import { addMessageAC } from '../../../../Redux/dialogs-reducer';
-import {DialogsPageType,StoreType} from '../../../../Redux/type';
+import {DialogsPageType, StateType, StoreType} from '../../../../Redux/type';
 import { Dialogs } from './Dialogs';
-import { store } from '../../../../Redux/redux-store';
+
 
 type MapStateToPropsType = {
     dialogsPage: DialogsPageType;
 };
 
-const mapStateToProps = (state: StoreType): MapStateToPropsType => {
-    return {
-        dialogsPage: store.getState().dialogsPage,
-    };
-};
-
 type MapDispatchToPropsType = {
     addMessage: (messageText: string) => void;
+};
+
+const mapStateToProps = (state: StateType ): MapStateToPropsType => {
+    return {
+        dialogsPage: state.dialogsPage,
+    };
 };
 
 const mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {

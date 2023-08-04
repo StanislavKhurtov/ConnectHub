@@ -3,24 +3,14 @@ import './App.css';
 import {Header} from "./Components/Header/Header";
 import {Main} from "./Components/Main/Main";
 import {Footer} from "./Components/Footer/Footer";
-import {AppRootState} from "./Redux/redux-store";
-import {ActionsTypes} from "./Redux/type";
 
 
-type AppType = {
-    store: any
-    state: AppRootState
-    dispatch: (action: ActionsTypes) => void
-}
-
-export const App = (props: AppType) => {
+export const App = () => {
     return (
         <div className="app-wrapper">
-            <Header/>
-            <Main
-                store={props.store}
-            />
-            <Footer/>
+            <Header />
+            <Main />
+            <Footer />
         </div>
     );
 }
