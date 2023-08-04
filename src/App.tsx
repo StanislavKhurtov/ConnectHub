@@ -19,9 +19,6 @@ export const App = (props: AppType) => {
             <Header/>
             <Main
                 store={props.store}
-                dispatch={props.store.dispatch}
-                dialogs={props.state.dialogsPage.dialogs}
-                messages={props.state.dialogsPage.messages}
             />
             <Footer/>
         </div>
