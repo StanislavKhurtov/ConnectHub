@@ -46,3 +46,6 @@
 42 - Redux
 43 - container component (контейнерная компонента)
 44 - Context API
+45 - connect, mapStateToProps, mapDispatchToProps
+46 - копия глубокая vs поверхностная (deep copy vs shallow copy)
+47 - Делаем копию состояния в ProfileReducer
