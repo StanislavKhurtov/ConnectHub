@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { addMessageAC } from '../../../../Redux/dialogs-reducer';
 import {DialogsPageType, StateType, StoreType} from '../../../../Redux/type';
 import { Dialogs } from './Dialogs';
+import {Dispatch} from "redux";
 
 
 type MapStateToPropsType = {
@@ -18,7 +19,7 @@ const mapStateToProps = (state: StateType ): MapStateToPropsType => {
     };
 };
 
-const mapDispatchToProps = (dispatch: any): MapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addMessage: (messageText: string) => {
             dispatch(addMessageAC(messageText));
