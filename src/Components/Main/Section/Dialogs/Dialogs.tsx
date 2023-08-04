@@ -3,7 +3,6 @@ import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {addMessageAC} from "../../../../Redux/dialogs-reducer";
-import {StoreType} from "../../../../Redux/type";
 import {store} from "../../../../Redux/redux-store";
 
 
