@@ -45,3 +45,4 @@
 41 - reducer (почти redux)
 42 - Redux
 43 - container component (контейнерная компонента)
+44 - Context API
