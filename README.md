@@ -49,3 +49,4 @@
 45 - connect, mapStateToProps, mapDispatchToProps
 46 - копия глубокая vs поверхностная (deep copy vs shallow copy)
 47 - Делаем копию состояния в ProfileReducer
+48 - Делаем копию состояния в DialogReducer

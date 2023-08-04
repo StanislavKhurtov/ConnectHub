@@ -3,8 +3,9 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background: red;
+    background: black;
     margin: 0 auto;
+    color: darkgrey;
 }
 
 [class*="__container"] {
