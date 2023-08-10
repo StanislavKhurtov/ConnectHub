@@ -19,7 +19,7 @@ export const Dialogs = () => {
 
     let addMessage = () => {
         if (messageText.trim() !== '') {
-           store.dispatch(addMessageAC(messageText));
+            store.dispatch(addMessageAC(messageText));
             setMessageText('');
         }
     }
