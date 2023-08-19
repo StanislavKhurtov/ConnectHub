@@ -11,23 +11,23 @@ type MapStateToPropsType = {
 };
 
 type MapDispatchToPropsType = {
-    follow: (userId: string) => void
-    unFollow: (userId: string) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
     setUsers: (users: Array<UsersPageType>) => void
 };
 
 const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.items
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        follow: (userId: string) => {
+        follow: (userId: number) => {
             dispatch(followAC(userId))
         },
-        unFollow: (userId: string) => {
+        unFollow: (userId: number) => {
             dispatch(unFollowAC(userId))
         },
         setUsers: (users: Array<UsersPageType>) => {
