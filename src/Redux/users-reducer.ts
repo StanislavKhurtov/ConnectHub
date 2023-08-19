@@ -23,8 +23,6 @@ export type UsersPageType = {
 
 export type UsersStateType = {
     items: UsersPageType[];
-    totalCount: number;
-    error: string | null;
 }
 
 
@@ -49,8 +47,7 @@ type ActionType =
 
 const initialState = {
     items: [],
-    totalCount: 0,
-    error: null
+
 }
 
 
