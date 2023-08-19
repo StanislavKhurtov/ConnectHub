@@ -1,12 +1,14 @@
 import React from "react";
 import s from './users.module.css'
 import {UsersPageType} from "../../Redux/users-reducer";
-import {v1} from "uuid";
+import axios from "axios";
+import userPhoto from '../../assets/images/1.jpg'
+
 
 type UserType = {
     users: Array<UsersPageType>
-    follow: (id: string) => void
-    unFollow: (userId: string) => void
+    follow: (id: number) => void
+    unFollow: (userId: number) => void
     setUsers: (users: Array<UsersPageType>) => void
 }
 
@@ -14,46 +16,17 @@ type UserType = {
 export const Users: React.FC<UserType> = (props) => {
     if (props.users.length === 0) {
 
-        props.setUsers([
-            {
-                id: v1(),
-                photoUrl: 'http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg',
-                followed: true,
-                fullName: "Stanislav",
-                status: 'I am a developer',
-                location: {city: 'Gomel', country: 'Belarus'}
-            },
-            {
-                id: v1(),
-                photoUrl: 'http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg',
-                followed: false,
-                fullName: "Sofia",
-                status: 'I am a developer-2',
-                location: {city: 'Penza', country: 'Russia'}
-            },
-            {
-                id: v1(),
-                photoUrl: 'http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg',
-                followed: true,
-                fullName: "Egor",
-                status: 'I am a developer-3',
-                location: {city: 'Beijing', country: 'China'}
-            },
-            {
-                id: v1(),
-                photoUrl: 'http://cdn1.flamp.ru/a992cfb02dd71b2dc22b2f577067ddd8.jpg',
-                followed: false,
-                fullName: "Natalia",
-                status: 'I am a developer-4',
-                location: {city: 'New-Delhi', country: 'India'}
-            },
-        ])
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
+
     }
 
     let usersElements = props.users.map(el => <div key={el.id} className={s.wrapper}>
         <div className={s.logo}>
             <div className={s.picture}>
-                <img className={s.image} src={el.photoUrl} alt="image logo"/>
+                <img className={s.image} src={el.photos.small != null ? el.photos.small : userPhoto} alt="image logo"/>
             </div>
             <div>
                 {el.followed ? (
@@ -65,16 +38,15 @@ export const Users: React.FC<UserType> = (props) => {
         </div>
         <div className={s.body}>
             <div>
-                <div>{el.fullName}</div>
+                <div>{el.name}</div>
                 <div>{el.status}</div>
             </div>
             <div>
-                <div>{el.location.country}</div>
-                <div>{el.location.city}</div>
+                <div>{'el.location.country'}</div>
+                <div>{'el.location.city'}</div>
             </div>
         </div>
     </div>)
-
 
 
     return (
