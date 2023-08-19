@@ -54,3 +54,4 @@
 50 - REST API (краткая теория)
 51 - Users API
 52 - Side Effect
+53 - классовый компонент (extends React.Component)
