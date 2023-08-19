@@ -13,6 +13,7 @@ type UserType = {
 
 export const Users: React.FC<UserType> = (props) => {
     if (props.users.length === 0) {
+
         props.setUsers([
             {
                 id: v1(),
