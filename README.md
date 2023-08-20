@@ -1,5 +1,3 @@
-# Привет, Самурай! 
-
 В этом репозитории прохожу курс 'Путь самурая' React 1.0
 
 01 - Как смотреть данный курс?
@@ -55,3 +53,4 @@
 51 - Users API
 52 - Side Effect
 53 - классовый компонент (extends React.Component)
+54 - жизненный цикл, life cycle methods, componentDidMount
