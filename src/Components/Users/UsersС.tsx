@@ -11,7 +11,7 @@ type UserType = {
     setUsers: (users: Array<UsersPageType>) => void
 }
 
-interface UsersState {
+type UsersState = {
     error: string | null;
 }
 

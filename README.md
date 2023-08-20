@@ -54,3 +54,4 @@
 52 - Side Effect
 53 - классовый компонент (extends React.Component)
 54 - жизненный цикл, life cycle methods, componentDidMount
+55 - pagination, постраничный вывод пользователей
