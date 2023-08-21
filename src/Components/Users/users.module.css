@@ -1,14 +1,15 @@
 .wrapper {
     display: flex;
+    align-items: center;
     gap: 20px ;
 
 }
 
 .logo {
-    flex: 0 1 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 5px;
 }
 
@@ -33,4 +34,23 @@
     display: flex;
     align-items: center;
     gap: 30px;
+}
+
+.pagination {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: black;
+}
+
+.selectedPage {
+    font-weight: 700;
+    color: red;
+    transform: scale(1.2);
+
+}
+.location {
+
 }
