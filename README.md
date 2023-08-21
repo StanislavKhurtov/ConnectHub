@@ -55,3 +55,4 @@
 53 - классовый компонент (extends React.Component)
 54 - жизненный цикл, life cycle methods, componentDidMount
 55 - pagination, постраничный вывод пользователей
+56 - Презентационная и Контейнерная компоненты
