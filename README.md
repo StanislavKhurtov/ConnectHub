@@ -57,3 +57,4 @@
 55 - pagination, постраничный вывод пользователей
 56 - Презентационная и Контейнерная компоненты
 57 - пример Preloader, loader-gif, isFetching indication
+58 - mapDispatchToProps лайф-хак
