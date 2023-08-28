@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 
 export type LocationType = {
@@ -29,6 +30,7 @@ export type UsersStateType = {
     pageSize: number
     totalCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 type FollowActionCreatorType = {
@@ -52,20 +54,26 @@ type setUsersTotalCountCreatorType = {
     type: 'SET_TOTAL_COUNT',
     totalCount: number
 }
+type setIsFetchingCreatorType = {
+    type: 'TOGGLE_IS_FETCHING',
+    isFetching: boolean
+}
 
 type ActionType =
     FollowActionCreatorType
     | UnFollowActionCreatorType
     | setUsersActionCreatorType
     | setCurrentPageActionCreatorType
-    | setUsersTotalCountCreatorType;
+    | setUsersTotalCountCreatorType
+    |setIsFetchingCreatorType;
 
 
 const initialState = {
     items: [],
     pageSize: 10,
     totalCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export const usersReducer = (state: UsersStateType = initialState, action: ActionType): UsersStateType => {
@@ -84,6 +92,9 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
         }
         case SET_TOTAL_COUNT: {
             return {...state, totalCount: action.totalCount}
+        }
+        case TOGGLE_IS_FETCHING: {
+            return {...state,isFetching: action.isFetching};
         }
         default:
             return state;
@@ -109,6 +120,12 @@ export const setCurrentPageAC = (currentPage: number): setCurrentPageActionCreat
 export const setUsersTotalCountAC = (totalCount: number): setUsersTotalCountCreatorType => {
     return {type: SET_TOTAL_COUNT, totalCount: totalCount }
 }
+
+export const toggleIsFetchingAC = (isFetching: boolean): setIsFetchingCreatorType => {
+    return {type: TOGGLE_IS_FETCHING, isFetching}
+}
+
+
 
 
 
