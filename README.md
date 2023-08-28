@@ -58,3 +58,4 @@
 56 - Презентационная и Контейнерная компоненты
 57 - пример Preloader, loader-gif, isFetching indication
 58 - mapDispatchToProps лайф-хак
+59 - profile page, ajax, api
