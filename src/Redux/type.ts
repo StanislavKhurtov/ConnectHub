@@ -3,6 +3,7 @@ export type PostType = {
     message: string
     likesCount: number
 }
+
 export type DialogsDataType = {
     id: string
     name: string
@@ -13,10 +14,10 @@ export type MessagesDataType = {
     message: string
 }
 
-
 export type ProfilePageType = {
     posts: PostType[]
     newPostText: string
+    profile: any
 }
 
 export type DialogsPageType = {
@@ -36,9 +37,7 @@ export type StoreType = {
     getState: () => StateType
     subscribe: (callback: (state: StateType) => void) => void
     dispatch: (action: ActionsTypes) => void
-
 }
-
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -55,6 +54,6 @@ export type AddMessageActionType = {
 }
 
 export type ActionsTypes =
-    AddPostActionType
+    | AddPostActionType
     | UpdateNewPostTextActionType
     | AddMessageActionType;
