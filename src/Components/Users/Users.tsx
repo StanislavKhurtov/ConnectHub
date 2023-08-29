@@ -2,6 +2,7 @@ import React from "react";
 import s from "./users.module.css";
 import {UsersPageType} from "../../Redux/users-reducer";
 import userPhoto from '../../assets/images/1.jpg'
+import {NavLink} from "react-router-dom";
 
 
 type UsersTypeProps = {
@@ -44,11 +45,13 @@ export const Users = (props: UsersTypeProps) => {
                 <div key={el.id} className={s.wrapper}>
                     <div className={s.logo}>
                         <div className={s.picture}>
-                            <img
-                                src={el.photos.small != null ? el.photos.small : userPhoto}
-                                className={s.image}
-                                alt="image logo"
-                            />
+                            <NavLink to={`/profile/${el.id}`}>
+                                <img
+                                    src={el.photos.small != null ? el.photos.small : userPhoto}
+                                    className={s.image}
+                                    alt="image logo"
+                                />
+                            </NavLink>
                         </div>
                         <div>
                             {el.followed ? (
