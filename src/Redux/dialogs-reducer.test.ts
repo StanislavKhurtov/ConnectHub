@@ -1,6 +1,6 @@
 import { v1 } from "uuid";
 import {addMessageAC, dialogsReducer} from "./dialogs-reducer";
-import {ActionsTypes} from "./type";
+
 
 
 describe("dialogsReducer", () => {
