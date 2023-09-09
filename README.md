@@ -60,3 +60,4 @@
 58 - mapDispatchToProps лайф-хак
 59 - profile page, ajax, api
 60 - withRouter, props.match.params
+61 - cookie, login в теории, auth/me
