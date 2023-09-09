@@ -62,3 +62,5 @@
 60 - withRouter, props.match.params
 61 - cookie, login в теории, auth/me
 62 - практика, follow-unfollow api
+63 - практика, DAL, axios.create
+
