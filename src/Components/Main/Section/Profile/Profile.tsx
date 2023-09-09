@@ -2,7 +2,7 @@ import React from 'react';
 import { MyPostsContainer } from './Section/MyPosts/MyPostsContainer';
 import { ProfileInfo } from './Section/ProfileInfo/ProfileInfo';
 
-export interface ProfileType {
+export type ProfileType= {
     aboutMe: string;
     contacts: {
         facebook: string | null;
