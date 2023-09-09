@@ -16,7 +16,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profile }) => {
 
     return (
         <>
-            <Image />
+           {/* <Image />*/}
             <Avatar profile={profile} />
         </>
     );
