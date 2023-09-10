@@ -32,7 +32,7 @@ export type UsersStateType = {
     totalCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: boolean
+    followingInProgress: number[]
 }
 
 type FollowActionCreatorType = {
@@ -63,6 +63,7 @@ type setIsFetchingCreatorType = {
 type setIsFollowingProgressCreatorType = {
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
     isFetching: boolean
+    userId:number
 }
 
 type ActionType =
@@ -71,8 +72,8 @@ type ActionType =
     | setUsersActionCreatorType
     | setCurrentPageActionCreatorType
     | setUsersTotalCountCreatorType
-    |setIsFetchingCreatorType
-    |setIsFollowingProgressCreatorType;
+    | setIsFetchingCreatorType
+    | setIsFollowingProgressCreatorType;
 
 
 const initialState = {
@@ -81,7 +82,7 @@ const initialState = {
     totalCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: false
+    followingInProgress: []
 
 }
 
@@ -103,10 +104,15 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
             return {...state, totalCount: action.totalCount}
         }
         case TOGGLE_IS_FETCHING: {
-            return {...state,isFetching: action.isFetching};
+            return {...state, isFetching: action.isFetching};
         }
         case TOGGLE_IS_FOLLOWING_PROGRESS: {
-            return {...state,followingInProgress: action.isFetching};
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            };
         }
         default:
             return state;
@@ -130,14 +136,14 @@ export const setCurrentPage = (currentPage: number): setCurrentPageActionCreator
 }
 
 export const setTotalUsersCount = (totalCount: number): setUsersTotalCountCreatorType => {
-    return {type: SET_TOTAL_COUNT, totalCount: totalCount }
+    return {type: SET_TOTAL_COUNT, totalCount: totalCount}
 }
 
 export const toggleIsFetching = (isFetching: boolean): setIsFetchingCreatorType => {
     return {type: TOGGLE_IS_FETCHING, isFetching}
 }
-export const toggleIsFollowingProgress = (isFetching: boolean): setIsFollowingProgressCreatorType => {
-    return {type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching}
+export const toggleIsFollowingProgress = (isFetching: boolean, userId: number): setIsFollowingProgressCreatorType => {
+    return {type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching,userId}
 }
 
 
