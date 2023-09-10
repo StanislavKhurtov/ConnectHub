@@ -7,16 +7,18 @@ import axios from "axios";
 
 
 type UsersTypeProps = {
-    users: Array<UsersPageType>;
-    follow: (id: number) => void;
-    unFollow: (userId: number) => void;
-    setUsers: (users: Array<UsersPageType>) => void;
-    setCurrent: (currentPage: number) => void;
-    setTotalUsersCount: (totalCount: number) => void;
-    pageSize: number;
-    totalCount: number;
-    currentPage: number;
+    users: Array<UsersPageType>
+    follow: (id: number) => void
+    unFollow: (userId: number) => void
+    setUsers: (users: Array<UsersPageType>) => void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalCount: number) => void
+    pageSize: number
+    totalCount: number
+    currentPage: number
     onPageChanged: any
+    followingInProgress: boolean
+    toggleIsFollowingProgress:( (followingInProgress:boolean)=> void)
 };
 
 export const Users = (props: UsersTypeProps) => {
@@ -25,8 +27,7 @@ export const Users = (props: UsersTypeProps) => {
         currentPage,
         pageSize,
         totalCount,
-        follow,
-        unFollow,
+        toggleIsFollowingProgress
     } = props;
 
     const pageCount = Math.ceil(totalCount / pageSize);
@@ -48,7 +49,7 @@ export const Users = (props: UsersTypeProps) => {
                         <div className={s.picture}>
                             <NavLink to={`/profile/${el.id}`}>
                                 <img
-                                    src={el.photos.small != null ? el.photos.small : userPhoto}
+                                    src={el.photos.small !== null ? el.photos.small : userPhoto}
                                     className={s.image}
                                     alt="image logo"
                                 />
@@ -56,23 +57,27 @@ export const Users = (props: UsersTypeProps) => {
                         </div>
                         <div>
                             {el.followed ? (
-                                <button onClick={() => {
+                                <button disabled={props.followingInProgress} onClick={() => {
+                                    toggleIsFollowingProgress(true)
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {withCredentials: true})
                                         .then((response) => {
                                             if (response.data.resultCode === 0) {
                                                 props.unFollow(el.id)
                                             }
+                                            toggleIsFollowingProgress(false)
                                         });
                                 }
                                 }>Unfollow
                                 </button>
                             ) : (
-                                <button onClick={() => {
+                                <button disabled={props.followingInProgress} onClick={() => {
+                                    toggleIsFollowingProgress(true)
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {withCredentials: true})
                                         .then((response) => {
                                             if (response.data.resultCode === 0) {
                                                 props.follow(el.id)
                                             }
+                                           toggleIsFollowingProgress(false)
                                         });
                                 }
                                 }>Follow</button>
