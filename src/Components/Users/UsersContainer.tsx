@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { AppRootState } from "../../Redux/redux-store";
+import React, {Component} from "react";
+import {connect} from 'react-redux';
+import {AppRootState} from "../../Redux/redux-store";
 import {
     follow,
     setCurrentPage,
@@ -11,9 +11,9 @@ import {
     unFollow,
     UsersPageType
 } from "../../Redux/users-reducer";
-import { Users } from "./Users";
-import { Preloader } from "../common/Preloader/Preloader";
-import { userAPI } from "../api/api";
+import {Users} from "./Users";
+import {Preloader} from "../common/Preloader/Preloader";
+import {userAPI} from "../api/api";
 
 type UserType = {
     users: Array<UsersPageType>;
@@ -27,18 +27,18 @@ type UserType = {
     currentPage: number;
     isFetching: boolean;
     toggleIsFetching: (isFetching: boolean) => void;
-    toggleIsFollowingProgress: (followingInProgress: boolean) => void;
-    followingInProgress: boolean
+    toggleIsFollowingProgress: (followingInProgress: boolean,taskId:number) => void;
+    followingInProgress: number[]
     // Fix: Added the missing prop
 };
 
 type MapStateToPropsType = {
-    users: Array<UsersPageType>;
-    pageSize: number;
-    totalCount: number;
-    currentPage: number;
-    isFetching: boolean;
-    followingInProgress: boolean;
+    users: Array<UsersPageType>
+    pageSize: number
+    totalCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: number[]
 };
 
 export class UsersAPIComponent extends Component<UserType> {
@@ -64,7 +64,7 @@ export class UsersAPIComponent extends Component<UserType> {
     render() {
         return (
             <>
-                {this.props.isFetching ? <Preloader /> : null}
+                {this.props.isFetching ? <Preloader/> : null}
                 <Users
                     users={this.props.users}
                     currentPage={this.props.currentPage}
