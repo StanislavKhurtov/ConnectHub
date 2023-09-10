@@ -64,4 +64,5 @@
 62 - практика, follow-unfollow api
 63 - практика, DAL, axios.create
 64 - практика, button disabled (follow\unfollow)
+65 - урок redux-thunk в деталях (теория)
 
