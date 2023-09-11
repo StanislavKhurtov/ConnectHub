@@ -11,7 +11,15 @@ export const userAPI = {
             .then(responce => {
                 return responce.data
             })
-    }
+    },
+    followUser(userId: number) {
+        return instanse.post(`follow/${userId}`).then((response) => response.data);
+    },
+    unfollowUser(userId: number) {
+        return instanse
+            .delete(`follow/${userId}`)
+            .then((response) => response.data);
+    },
 }
 
 
