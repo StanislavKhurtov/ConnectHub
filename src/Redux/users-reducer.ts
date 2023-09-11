@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {userAPI} from "../Components/api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -63,7 +66,7 @@ type setIsFetchingCreatorType = {
 type setIsFollowingProgressCreatorType = {
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
     isFetching: boolean
-    userId:number
+    userId: number
 }
 
 type ActionType =
@@ -143,11 +146,44 @@ export const toggleIsFetching = (isFetching: boolean): setIsFetchingCreatorType 
     return {type: TOGGLE_IS_FETCHING, isFetching}
 }
 export const toggleIsFollowingProgress = (isFetching: boolean, userId: number): setIsFollowingProgressCreatorType => {
-    return {type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching,userId}
+    return {type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId}
 }
 
 
+export const getUsers = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch<ActionType>) => {
+        dispatch(toggleIsFetching(true));
+        userAPI.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        });
+    };
+};
 
+export const followUser = (userId: number) => {
+    return (dispatch: Dispatch<ActionType>) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        userAPI.followUser(userId).then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(follow(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+        });
+    };
+};
+
+export const unfollowUser = (userId: number) => {
+    return (dispatch: Dispatch<ActionType>) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        userAPI.unfollowUser(userId).then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(unFollow(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+        });
+    };
+};
 
 
 
