@@ -2,13 +2,13 @@ import React, {useEffect} from "react"
 import {connect, useDispatch, useSelector} from 'react-redux'
 import {AppRootState} from "../../Redux/redux-store"
 import {
-    follow,
+    followSuccess,
     getUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
     toggleIsFollowingProgress,
-    unFollow,
+    unFollowSuccess,
     UsersPageType
 } from "../../Redux/users-reducer"
 import {Users} from "./Users"
@@ -42,18 +42,18 @@ type MapStateToPropsType = {
 };
 
 const UsersAPIComponent = (props: UserType) => {
+
     const users = useSelector<AppRootState,any>((state)=> state.usersPage.items)
     const dispatch = useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
 
     useEffect(() => {
         dispatch(getUsers(props.currentPage, props.pageSize));
-    }, []);
+    }, [dispatch,props.currentPage, props.pageSize]);
 
 
     const onPageChanged = (pageNumber: number) => {
+        dispatch(setCurrentPage(pageNumber));
         dispatch(getUsers(pageNumber, props.pageSize));
-        props.setCurrentPage(pageNumber);
-
     };
 
 
@@ -65,14 +65,13 @@ const UsersAPIComponent = (props: UserType) => {
                 currentPage={props.currentPage}
                 pageSize={props.pageSize}
                 totalCount={props.totalCount}
-                follow={follow}
-                unFollow={unFollow}
+                follow={props.follow}
+                unFollow={props.unFollow}
                 setCurrentPage={setCurrentPage}
                 setUsers={setUsers}
                 setTotalUsersCount={setTotalUsersCount}
                 onPageChanged={onPageChanged}
                 followingInProgress={props.followingInProgress}
-                toggleIsFollowingProgress={toggleIsFollowingProgress}
             />
         </>
     );
@@ -90,8 +89,8 @@ const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
 };
 
 export const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unFollow,
+    follow: followSuccess,
+    unFollow: unFollowSuccess,
     setCurrentPage,
     toggleIsFollowingProgress,
     getUsers
