@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
-import {SetUsersDataAC} from '../../Redux/auth-reducer';
+import {connect, useDispatch} from 'react-redux';
+import {getAuthUserData, SetUsersDataAC} from '../../Redux/auth-reducer';
 import {Header} from './Header';
 import {AppRootState} from "../../Redux/redux-store";
-import axios from "axios";
+import {ThunkDispatch} from "redux-thunk";
+import {AnyAction} from "redux";
 
 type MapStateToPropsType = {
     isAuth: boolean
@@ -17,16 +18,11 @@ type MapDispatchToPropsType = {
 type PropsType = MapStateToPropsType & MapDispatchToPropsType;
 
 const HeaderContainer = (props: PropsType) => {
+    const dispatch = useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-            .then((response) => {
-                if (response.data.resultCode === 0) {
-                    let {id, email, login} = response.data.data;
-                    props.SetUsersDataAC(id, email, login)
-                }
-            });
-    }, [])
+        dispatch(getAuthUserData())
+    }, [dispatch])
 
     return <Header
         isAuth={props.isAuth}

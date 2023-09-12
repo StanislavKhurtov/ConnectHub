@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {AddMessageActionType, AddPostActionType, ProfilePageType, UpdateNewPostTextActionType} from "./type";
+import {Dispatch} from "redux";
+import {userAPI} from "../Components/api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST = 'UPDATE-NEW-POST';
@@ -58,6 +60,13 @@ export const updateNewPostAC = (text: string): UpdateNewPostTextActionType => {
 
 export const setUserProfile = (profile: any): setUserProfileActionType => {
     return {type: SET_USER_PROFILE, profile}
+}
+
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+    userAPI.getProfile(userId)
+        .then((response) => {
+            dispatch(setUserProfile(response.data))
+        });
 }
 
 
