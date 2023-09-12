@@ -66,4 +66,4 @@
 64 - практика, button disabled (follow\unfollow)
 65 - урок redux-thunk в деталях (теория)
 66 - урок redux-thunk в деталях (практика)
-
+67 - урок redux-thunk 2 в деталях (практика)
