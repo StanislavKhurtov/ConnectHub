@@ -8,6 +8,7 @@ import {Music} from './Section/Music/Music';
 import {DialogsContainer} from "./Section/Dialogs/DialogsContainer";
 import {UsersContainer} from "../Users/UsersContainer";
 import ProfileContainer from "./Section/Profile/ProfileContainer";
+import {Login} from "../Login/Login";
 
 
 export const Main = () => {
@@ -22,6 +23,7 @@ export const Main = () => {
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
+                    <Route path='/login' component={Login}/>
                 </div>
             </div>
         </div>

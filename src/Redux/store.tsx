@@ -34,6 +34,7 @@ export let store: StoreType = {
             ],
         },
         sidebar: {},
+
     },
 
     _callSubscriber(state: StateType) {

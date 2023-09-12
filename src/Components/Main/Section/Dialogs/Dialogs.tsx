@@ -4,9 +4,11 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {addMessageAC} from "../../../../Redux/dialogs-reducer";
 import {store} from "../../../../Redux/redux-store";
+import {Redirect} from "react-router-dom";
 
 
 export const Dialogs = () => {
+    let isAuth = store.getState().auth.isAuth
 
     let state = store.getState().dialogsPage;
 
@@ -36,6 +38,9 @@ export const Dialogs = () => {
             }
         }
     }
+
+    if (!isAuth) return <Redirect to={'/login'}/>
+
 
     return (
         <div>

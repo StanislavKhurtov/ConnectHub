@@ -1,21 +1,24 @@
-import { connect } from 'react-redux';
-import { addMessageAC } from '../../../../Redux/dialogs-reducer';
-import {DialogsPageType, StateType, StoreType} from '../../../../Redux/type';
-import { Dialogs } from './Dialogs';
+import {connect} from 'react-redux';
+import {addMessageAC} from '../../../../Redux/dialogs-reducer';
+import {Dialogs} from './Dialogs';
 import {Dispatch} from "redux";
+import {DialogsPageType} from "../../../../Redux/type";
+import {AppRootState} from "../../../../Redux/redux-store";
 
 
 type MapStateToPropsType = {
     dialogsPage: DialogsPageType;
+    isAuth: boolean
 };
 
 type MapDispatchToPropsType = {
     addMessage: (messageText: string) => void;
 };
 
-const mapStateToProps = (state: StateType ): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     };
 };
 
