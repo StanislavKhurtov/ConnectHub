@@ -41,7 +41,6 @@ const ProfileContainer = (props: CommonPropsType) => {
     }, [])
 
     if (!isAuth) return <Redirect to={'/login'}/>
-    console.log(isAuth)
 
     return (
         <div className={profile.body}>

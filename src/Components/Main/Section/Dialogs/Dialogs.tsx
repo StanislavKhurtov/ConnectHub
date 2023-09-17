@@ -41,7 +41,6 @@ export const Dialogs = () => {
 
     if (!isAuth) return <Redirect to={'/login'}/>
 
-
     return (
         <div>
             <div className={dialog.body}>
