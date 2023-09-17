@@ -15,6 +15,7 @@ import {Users} from "./Users"
 import {Preloader} from "../common/Preloader/Preloader";
 import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 type UserType = {
     users: Array<UsersPageType>;
@@ -88,10 +89,12 @@ const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     };
 };
 
+let withRedirect = WithAuthRedirect(UsersAPIComponent)
+
 export const UsersContainer = connect(mapStateToProps, {
     follow: followSuccess,
     unFollow: unFollowSuccess,
     setCurrentPage,
     toggleIsFollowingProgress,
     getUsers
-})(UsersAPIComponent);
+})(withRedirect);

@@ -4,11 +4,13 @@ import {Dialogs} from './Dialogs';
 import {Dispatch} from "redux";
 import {DialogsPageType} from "../../../../Redux/type";
 import {AppRootState} from "../../../../Redux/redux-store";
+import {Redirect} from "react-router-dom";
+import React from "react";
+import {WithAuthRedirect} from "../../../../hoc/WithAuthRedirect";
 
 
 type MapStateToPropsType = {
-    dialogsPage: DialogsPageType;
-    isAuth: boolean
+    dialogsPage: DialogsPageType
 };
 
 type MapDispatchToPropsType = {
@@ -17,8 +19,7 @@ type MapDispatchToPropsType = {
 
 const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     return {
-        dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
+        dialogsPage: state.dialogsPage
     };
 };
 
@@ -30,4 +31,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     };
 };
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let AuthRedirectComponent = WithAuthRedirect(Dialogs)
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);

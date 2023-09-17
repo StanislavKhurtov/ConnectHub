@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, ComponentType} from 'react';
 import main from './Main.module.css';
 import {Navbar} from './Section/Navbar/Navbar';
 import {Route} from 'react-router-dom';

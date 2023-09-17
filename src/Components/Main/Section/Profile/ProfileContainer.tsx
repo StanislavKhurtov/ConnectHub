@@ -7,6 +7,7 @@ import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfile} from "../../../../Redux/profile-reducer";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
+import {WithAuthRedirect} from "../../../../hoc/WithAuthRedirect";
 
 
 type PathParamsType = {
@@ -15,6 +16,8 @@ type PathParamsType = {
 
 type MapStateToPropsType = {
     profile: ProfileType | null
+}
+type MapStateToPropsRedirectType = {
     isAuth: boolean
 }
 
@@ -29,7 +32,7 @@ type CommonPropsType = RouteComponentProps<PathParamsType> & ProfileAPIContainer
 
 
 const ProfileContainer = (props: CommonPropsType) => {
-    const dispatch= useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
+    const dispatch = useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
     let isAuth = store.getState().auth.isAuth
 
     useEffect(() => {
@@ -40,8 +43,6 @@ const ProfileContainer = (props: CommonPropsType) => {
         dispatch(getUserProfile(userId))
     }, [])
 
-    if (!isAuth) return <Redirect to={'/login'}/>
-
     return (
         <div className={profile.body}>
             <Profile profile={props.profile}/>
@@ -49,14 +50,17 @@ const ProfileContainer = (props: CommonPropsType) => {
     );
 }
 
+
+
+let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
+
 let mapStateToProps = (state: AppRootState): MapStateToPropsType => ({
-    profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+    profile: state.profilePage.profile
 });
 
-let withUrlDataContainerComponent: any = withRouter(ProfileContainer)
+let withUrlDataContainerComponent: any = withRouter(AuthRedirectComponent)
 
-export default connect<MapStateToPropsType, MapDispatchPropsType, CommonPropsType, AppRootState>(mapStateToProps, )(withUrlDataContainerComponent);
+export default connect<MapStateToPropsType, MapDispatchPropsType, CommonPropsType, AppRootState>(mapStateToProps)(withUrlDataContainerComponent);
 
 
 //типизация коннекта ох не факт что правильно!!!!!!!
