@@ -3,7 +3,7 @@ import profile from './Profile.module.css'
 import {Profile, ProfileType} from "./Profile";
 import {connect, useDispatch} from "react-redux";
 import {AppRootState, store} from "../../../../Redux/redux-store";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {getUserProfile} from "../../../../Redux/profile-reducer";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
@@ -17,9 +17,7 @@ type PathParamsType = {
 type MapStateToPropsType = {
     profile: ProfileType | null
 }
-type MapStateToPropsRedirectType = {
-    isAuth: boolean
-}
+
 
 type MapDispatchPropsType = {
     setUserProfile: (profile: ProfileType | null) => void
