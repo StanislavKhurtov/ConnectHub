@@ -15,6 +15,7 @@ export let store: StoreType = {
             ],
             newPostText: '',
             profile: null, // Add a default value for the profile property
+            status: '',
         },
         dialogsPage: {
             dialogs: [
