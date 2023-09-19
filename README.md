@@ -69,3 +69,6 @@
  - 67 - урок redux-thunk 2 в деталях (практика)
  - 68 - Redirect
  - 69 - High Order Component (hoc)
+ - 70 - функция compose
+ - 71 - setState, local state
+
