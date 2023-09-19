@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import profile from './Profile.module.css'
 import {Profile, ProfileType} from "./Profile";
-import {connect, useDispatch} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {AppRootState, store} from "../../../../Redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {getUserProfile} from "../../../../Redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus} from "../../../../Redux/profile-reducer";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 import {WithAuthRedirect} from "../../../../hoc/WithAuthRedirect";
@@ -16,6 +16,8 @@ type PathParamsType = {
 
 type MapStateToPropsType = {
     profile: ProfileType | null
+    status: string
+
 }
 
 
@@ -32,33 +34,38 @@ type CommonPropsType = RouteComponentProps<PathParamsType> & ProfileAPIContainer
 const ProfileContainer = (props: CommonPropsType) => {
     const dispatch = useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
     let isAuth = store.getState().auth.isAuth
+    let status = useSelector<AppRootState, string>((state) => state.profilePage.status)
 
     useEffect(() => {
         let userId = props.match.params.userId;
         if (!userId) {
-            userId = '2';
+            userId = '29506';
         }
         dispatch(getUserProfile(userId))
+        dispatch(getUserStatus(userId))
     }, [])
+
+    const onChange = (status: string) => {
+        dispatch(updateUserStatus(status))
+    }
 
     return (
         <div className={profile.body}>
-            <Profile profile={props.profile}/>
+            <Profile profile={props.profile} status={status} onChange={onChange}/>
         </div>
     );
 }
 
 
-
 let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
 
 let mapStateToProps = (state: AppRootState): MapStateToPropsType => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status,
 });
 
 let withUrlDataContainerComponent: any = withRouter(AuthRedirectComponent)
 
-export default connect<MapStateToPropsType, MapDispatchPropsType, CommonPropsType, AppRootState>(mapStateToProps)(withUrlDataContainerComponent);
+export default connect<MapStateToPropsType, MapDispatchPropsType, CommonPropsType, AppRootState>(mapStateToProps,)(withUrlDataContainerComponent);
 
 
-//типизация коннекта ох не факт что правильно!!!!!!!
