@@ -12,6 +12,7 @@ describe("profileReducer", () => {
         ],
         newPostText: "",
         profile: null,
+        status: ''
     };
 
     it("should add a new post to the state", () => {
