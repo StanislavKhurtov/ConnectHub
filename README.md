@@ -75,4 +75,5 @@
  - 73 - http put, local state
  - 74 - componentDidUpdate
  - 75 - redux-form введение (login)
+ - 
 
