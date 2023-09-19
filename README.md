@@ -71,4 +71,8 @@
  - 69 - High Order Component (hoc)
  - 70 - функция compose
  - 71 - setState, local state
+ - 72 - обновляем create-react-app
+ - 73 - http put, local state
+ - 74 - componentDidUpdate
+ - 75 - redux-form введение (login)
 
