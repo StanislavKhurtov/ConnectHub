@@ -1,7 +1,6 @@
-import {ActionsTypes} from "./type";
 
 const initialState = {}
 
-export const sidebarReducer = (state:any = initialState, action: ActionsTypes) => {
+export const sidebarReducer = (state:any = initialState, action: any) => {
     return state;
 }
