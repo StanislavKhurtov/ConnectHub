@@ -77,4 +77,5 @@
  - 75 - redux-form введение (login)
  - 76 - redux-form опять про базовые вещи
  - 77 - redux-form field validation (валидация, ошибки). Осторожно Замыкание!
+ - 78 - login и logout api
 
