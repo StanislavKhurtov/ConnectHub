@@ -1,3 +1,6 @@
+import {SendMessagecreatorType} from "./dialogs-reducer";
+import {AddPostActionType, setStatusActionType, setUserProfileActionType} from "./profile-reducer";
+
 export type PostType = {
     id: string
     message: string
@@ -16,9 +19,10 @@ export type MessagesDataType = {
 
 export type ProfilePageType = {
     posts: PostType[]
-    newPostText: string
     profile: any
     status: string
+    newPostText: string
+
 }
 
 export type DialogsPageType = {
@@ -37,24 +41,10 @@ export type StoreType = {
     _callSubscriber: (state: StateType) => void
     getState: () => StateType
     subscribe: (callback: (state: StateType) => void) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action:any) => void
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
-}
 
-export type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST'
-    newText: string
-}
 
-export type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-    message: string
-}
 
-export type ActionsTypes =
-    | AddPostActionType
-    | UpdateNewPostTextActionType
-    | AddMessageActionType;
+
