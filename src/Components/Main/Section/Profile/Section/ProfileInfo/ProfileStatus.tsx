@@ -1,5 +1,5 @@
 import React from 'react';
-import {EditebleSpan} from "../../../../../EditableSpan/EditableSpan";
+import {EditebleSpan} from "Components/EditableSpan/EditableSpan";
 
 type ProfileStatusType = {
     status: string
