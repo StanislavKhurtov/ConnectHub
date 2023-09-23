@@ -1,9 +1,8 @@
-import React from 'react';
-import {addPostAC, updateNewPostAC} from "../../../../../../Redux/profile-reducer";
+import {addPostAC} from "../../../../../../Redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
-import {AppRootState, store} from "../../../../../../Redux/redux-store";
+import {AppRootState} from "../../../../../../Redux/redux-store";
 import {connect} from "react-redux";
-import {PostType, StateType} from "../../../../../../Redux/type";
+import {PostType} from "../../../../../../Redux/type";
 import {Dispatch} from "redux";
 
 
@@ -13,8 +12,8 @@ type MapStateToPropsType = {
 };
 
 type MapDispatchToPropsType = {
-    updateNewPostText: (text: string) => void
-    addPost: () => void
+    addPost: (newPostText:string) => void
+
 };
 
 const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
@@ -26,11 +25,8 @@ const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        updateNewPostText: (text: string) => {
-            store.dispatch(updateNewPostAC(text))
-        },
-        addPost: () => {
-            store.dispatch(addPostAC());
+        addPost: (newPostText:any) => {
+           dispatch(addPostAC(newPostText));
         }
     }
 }
