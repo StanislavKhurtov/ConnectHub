@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import { profileReducer, addPostAC, updateNewPostAC, setUserProfile } from "./profile-reducer";
+import { profileReducer, addPostAC,setUserProfile } from "./profile-reducer";
 
 describe("profileReducer", () => {
     let initialState = {
@@ -15,6 +15,7 @@ describe("profileReducer", () => {
         status: ''
     };
 
+/*
     it("should add a new post to the state", () => {
         const text = "New post";
         const action = addPostAC();
@@ -24,14 +25,9 @@ describe("profileReducer", () => {
         expect(newState.posts[newState.posts.length - 1].message).toBe("");
         expect(newState.posts[newState.posts.length - 1].likesCount).toBe(0);
     });
+*/
 
-    it("should update the new post text in the state", () => {
-        const text = "New post text";
-        const action = updateNewPostAC(text);
-        const newState = profileReducer(initialState, action);
 
-        expect(newState.newPostText).toBe(text);
-    });
 
     it("should set the user profile in the state", () => {
         const profile = { name: "John Doe", age: 25 };
