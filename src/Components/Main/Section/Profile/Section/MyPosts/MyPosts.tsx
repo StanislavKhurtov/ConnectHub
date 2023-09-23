@@ -30,6 +30,9 @@ export const MyPosts = (props: MyPostType) => {
     );
 };
 
+
+
+
 type AddNewProFormType = {
     handleSubmit: FormEventHandler<HTMLFormElement> | undefined
 }
