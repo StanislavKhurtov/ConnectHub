@@ -1,10 +1,10 @@
-import React, {FormEventHandler} from 'react';
+import React from 'react';
 import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {store} from "../../../../Redux/redux-store";
+import {store} from "Redux/redux-store";
 import {Redirect} from "react-router-dom";
-import {Field, reduxForm} from "redux-form";
+import {AddMessageFormRedux} from "Components/Main/Section/Dialogs/AddMessageForm";
 
 type DialogsPropsType = {
     sendMessage: (newMessageBody: any) => void;
@@ -43,25 +43,3 @@ export const Dialogs = (props:DialogsPropsType) => {
 };
 
 
-type AddMessageFormType = {
-    handleSubmit: FormEventHandler<HTMLFormElement> | undefined
-}
-
-const AddMessageForm = (props: AddMessageFormType) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    component='textarea'
-                    name='newMessageBody'
-                    placeholder='Enter your message'
-                />
-            </div>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
-    )
-}
-
-const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)
