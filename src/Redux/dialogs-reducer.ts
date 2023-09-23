@@ -1,8 +1,5 @@
 import {v1} from "uuid";
-import {ActionsTypes, AddMessageActionType, DialogsDataType, DialogsPageType, MessagesDataType} from "./type";
-
-
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import {DialogsDataType, MessagesDataType} from "./type";
 
 
 const initialState = {
@@ -26,14 +23,19 @@ export type InitialStateType = typeof initialState
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
-        case ADD_MESSAGE: {
-            return {...state, messages: [...state.messages, {id: v1(), message: action.message}]};
-        }
+        case 'SEND_MESSAGE':
+            return {
+                    ...state,
+                    messages: [...state.messages, {id: '6', message: action.newMessageBody}]
+                }
+
         default:
             return state;
     }
 }
 
-export const addMessageAC = (message: string): AddMessageActionType => {
-    return {type: ADD_MESSAGE, message}
-}
+export const sendMessageCreator = (newMessageBody: any) => ({type: 'SEND_MESSAGE', newMessageBody} as const)
+
+export type SendMessagecreatorType = ReturnType<typeof sendMessageCreator>
+
+type ActionsTypes = SendMessagecreatorType
