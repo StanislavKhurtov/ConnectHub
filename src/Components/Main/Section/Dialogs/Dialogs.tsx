@@ -1,13 +1,17 @@
-import React, {useState} from 'react';
+import React, {FormEventHandler} from 'react';
 import dialog from './Dialog.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {addMessageAC} from "../../../../Redux/dialogs-reducer";
 import {store} from "../../../../Redux/redux-store";
 import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
+type DialogsPropsType = {
+    sendMessage: (newMessageBody: any) => void;
+}
 
-export const Dialogs = () => {
+export const Dialogs = (props:DialogsPropsType) => {
+
     let isAuth = store.getState().auth.isAuth
 
     let state = store.getState().dialogsPage;
@@ -17,26 +21,8 @@ export const Dialogs = () => {
     let messageElements = state.messages.map(el => <Message key={el.id} message={el.message} id={el.id}/>)
 
 
-    let [messageText, setMessageText] = useState('');
-
-    let addMessage = () => {
-        if (messageText.trim() !== '') {
-            store.dispatch(addMessageAC(messageText));
-            setMessageText('');
-        }
-    }
-
-    let onMessageChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setMessageText(event.target.value);
-    }
-
-    const onKeyPressHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === 'Enter') {
-            if (messageText.trim() !== '') {
-                store.dispatch(addMessageAC(messageText));
-                setMessageText('');
-            }
-        }
+    let addNewMessage = (values: any) => {
+      props.sendMessage(values.newMessageBody)
     }
 
     if (!isAuth) return <Redirect to={'/login'}/>
@@ -49,12 +35,33 @@ export const Dialogs = () => {
                 </div>
                 <div className={dialog.messages}>
                     {messageElements}
-                    <div>
-                        <textarea value={messageText} onKeyPress={onKeyPressHandler} onChange={onMessageChange}/>
-                        <button onClick={addMessage}>Add message</button>
-                    </div>
                 </div>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     );
 };
+
+
+type AddMessageFormType = {
+    handleSubmit: FormEventHandler<HTMLFormElement> | undefined
+}
+
+const AddMessageForm = (props: AddMessageFormType) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field
+                    component='textarea'
+                    name='newMessageBody'
+                    placeholder='Enter your message'
+                />
+            </div>
+            <div>
+                <button>Send</button>
+            </div>
+        </form>
+    )
+}
+
+const AddMessageFormRedux = reduxForm({form: 'dialogAddMessageForm'})(AddMessageForm)
