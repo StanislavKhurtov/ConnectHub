@@ -19,9 +19,7 @@ type MapStateToPropsType = {
     status: string
     authorizedUserId: any
     isAuth: boolean
-
 }
-
 
 type MapDispatchPropsType = {
     setUserProfile: (profile: ProfileType | null) => void
@@ -42,6 +40,9 @@ const ProfileContainer = (props: CommonPropsType) => {
         let userId = props.match.params.userId;
         if (!userId) {
             userId = props.authorizedUserId as string
+            if (!userId){
+                props.history.push('/login')
+            }
         }
         dispatch(getUserProfile(userId))
         dispatch(getUserStatus(userId))
@@ -53,7 +54,11 @@ const ProfileContainer = (props: CommonPropsType) => {
 
     return (
         <div className={profile.body}>
-            <Profile profile={props.profile} status={status} onChange={onChange}/>
+            <Profile
+                profile={props.profile}
+                status={status}
+                onChange={onChange}
+            />
         </div>
     );
 }

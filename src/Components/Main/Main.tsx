@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import main from './Main.module.css';
 import {Navbar} from './Section/Navbar/Navbar';
 import {Route} from 'react-router-dom';
@@ -9,9 +9,26 @@ import {DialogsContainer} from "./Section/Dialogs/DialogsContainer";
 import {UsersContainer} from "../Users/UsersContainer";
 import ProfileContainer from "./Section/Profile/ProfileContainer";
 import {Login} from "../Login/Login";
-
+import {useDispatch} from "react-redux";
+import {getAuthUserData} from "Redux/auth-reducer";
+import {AnyAction} from "redux";
+import {ThunkDispatch} from "redux-thunk";
+import {AppRootState} from "Redux/redux-store";
 
 export const Main = () => {
+
+    const dispatch: ThunkDispatch<AppRootState, unknown, AnyAction> = useDispatch();
+
+    //const initialized = useSelector((state: AppRootState) => state.app.initialized);
+
+    useEffect(() => {
+        dispatch(getAuthUserData())
+    }, []);
+
+    /*if (!initialized) {
+        return <Preloader/>
+    }*/
+
     return (
         <div className={main.main}>
             <div className={main.main__container}>
@@ -27,5 +44,6 @@ export const Main = () => {
                 </div>
             </div>
         </div>
-    );
+    )
+        ;
 };

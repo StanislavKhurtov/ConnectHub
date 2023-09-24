@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import {connect, useDispatch, useSelector} from 'react-redux'
-import {AppRootState} from "../../Redux/redux-store"
+import {AppRootState} from "Redux/redux-store"
 import {
     followSuccess,
     getUsers,
@@ -10,12 +10,20 @@ import {
     toggleIsFollowingProgress,
     unFollowSuccess,
     UsersPageType
-} from "../../Redux/users-reducer"
+} from "Redux/users-reducer"
 import {Users} from "./Users"
 import {Preloader} from "../common/Preloader/Preloader";
 import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {WithAuthRedirect} from "hoc/WithAuthRedirect";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUser
+} from "Redux/users-selectors";
 
 type UserType = {
     users: Array<UsersPageType>;
@@ -45,6 +53,7 @@ type MapStateToPropsType = {
 const UsersAPIComponent = (props: UserType) => {
 
     const users = useSelector<AppRootState,any>((state)=> state.usersPage.items)
+
     const dispatch = useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
 
     useEffect(() => {
@@ -80,12 +89,12 @@ const UsersAPIComponent = (props: UserType) => {
 
 const mapStateToProps = (state: AppRootState): MapStateToPropsType => {
     return {
-        users: state.usersPage.items,
-        pageSize: state.usersPage.pageSize,
-        totalCount: state.usersPage.totalCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUser(state),
+        pageSize: getPageSize(state),
+        totalCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     };
 };
 

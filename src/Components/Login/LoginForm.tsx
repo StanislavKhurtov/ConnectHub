@@ -11,8 +11,6 @@ type LoginFormType = {
 
 }
 export const LoginForm = (props: LoginFormType) => {
-
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
