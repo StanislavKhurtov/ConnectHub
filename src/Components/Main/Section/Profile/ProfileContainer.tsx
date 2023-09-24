@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import profile from './Profile.module.css'
 import {Profile, ProfileType} from "./Profile";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {AppRootState, store} from "../../../../Redux/redux-store";
+import {AppRootState, store} from "Redux/redux-store";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import {getUserProfile, getUserStatus, updateUserStatus} from "../../../../Redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus} from "Redux/profile-reducer";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
-import {WithAuthRedirect} from "../../../../hoc/WithAuthRedirect";
+import {WithAuthRedirect} from "hoc/WithAuthRedirect";
 
 
 type PathParamsType = {
@@ -17,6 +17,8 @@ type PathParamsType = {
 type MapStateToPropsType = {
     profile: ProfileType | null
     status: string
+    authorizedUserId: any
+    isAuth: boolean
 
 }
 
@@ -39,7 +41,7 @@ const ProfileContainer = (props: CommonPropsType) => {
     useEffect(() => {
         let userId = props.match.params.userId;
         if (!userId) {
-            userId = '29506';
+            userId = props.authorizedUserId as string
         }
         dispatch(getUserProfile(userId))
         dispatch(getUserStatus(userId))
@@ -62,6 +64,9 @@ let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
 let mapStateToProps = (state: AppRootState): MapStateToPropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
+
 });
 
 let withUrlDataContainerComponent: any = withRouter(AuthRedirectComponent)
