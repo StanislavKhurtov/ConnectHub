@@ -2,12 +2,17 @@ import {Field, reduxForm} from "redux-form";
 import {Input} from "Components/common/FormsControls/FormsControls";
 import {required} from "utils/validator";
 import React, {FormEventHandler} from "react";
+import s from '../common/FormsControls/FormsControls.module.css'
 
 
 type LoginFormType = {
     handleSubmit: FormEventHandler<HTMLFormElement>
+    error: string
+
 }
 export const LoginForm = (props: LoginFormType) => {
+
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -20,10 +25,10 @@ export const LoginForm = (props: LoginFormType) => {
             </div>
             <div>
                 <Field
-                    placeholder={'password'}
+                    placeholder='password'
                     component={Input}
                     validate={[required]}
-                    name={"password"}
+                    name="password"
                 />
             </div>
             <div>
@@ -32,6 +37,9 @@ export const LoginForm = (props: LoginFormType) => {
                     name={"rememberMe"}
                     type='checkbox'/>Remember me
             </div>
+            {props.error && <div className={s.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
