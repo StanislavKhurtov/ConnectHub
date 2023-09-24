@@ -7,3 +7,10 @@
     color: red;
     font-size: 12px;
 }
+
+.formSummaryError {
+    border: 2px solid red;
+    padding: 5px;
+    color: brown;
+    width: 100px;
+}
