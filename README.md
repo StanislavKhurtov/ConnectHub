@@ -80,5 +80,6 @@
  - 78 - login и logout api
  - 79 - stopSubmit (redux-form)
  - 80 - инициализация приложения
- - 
+ - 81 - селекторы (reselect part 1)
+ - 82 - mapStateToProps (reselect часть 2)
 
