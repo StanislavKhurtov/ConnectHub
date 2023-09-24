@@ -1,13 +1,25 @@
-import React, {FormEventHandler} from 'react';
-import {Field, reduxForm} from "redux-form";
-import {Input} from "Components/common/FormsControls/FormsControls";
-import {required} from "utils/validator";
+import React from 'react';
+import {LoginReduxForm} from "Components/Login/LoginForm";
+import {connect, useDispatch} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {AppRootState} from "Redux/redux-store";
+import {login} from "Redux/auth-reducer";
+import {ThunkDispatch} from "redux-thunk";
+import {AnyAction} from "redux";
 
-type LoginType = {}
+type LoginType = {
+    login: (email: string, password: string, rememberMe: boolean) => void;
+    isAuth: boolean
+}
 
 export const Login = (props: LoginType) => {
+
+    const dispatch: ThunkDispatch<AppRootState, unknown, AnyAction>  = useDispatch()
     const onSubmit = (formData: any) => {
-        console.log(formData)
+      dispatch(login(formData.email, formData.password, formData.rememberMe))
+    }
+    if (props.isAuth) {
+        return <Redirect to={'/profile'}/>
     }
     return (
         <div>
@@ -17,45 +29,8 @@ export const Login = (props: LoginType) => {
     );
 };
 
-
-type LoginFormType = {
-    handleSubmit: FormEventHandler<HTMLFormElement> | undefined
-}
-export const LoginForm = (props: LoginFormType) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    placeholder={'Login'}
-                    component={Input}
-                    name={"login"}
-                    validate={[required]}
-                />
-            </div>
-            <div>
-                <Field
-                    placeholder={'Password'}
-                    component={Input}
-                    validate={[required]}
-                    name={"password"}
-                />
-            </div>
-            <div>
-                <Field
-                    component={Input}
-                    name={"rememberMe"}
-                    type='checkbox'/>Remember me
-            </div>
-            <div>
-                <button>Login</button>
-            </div>
-        </form>
-    );
-};
-
-const LoginReduxForm = reduxForm({
-    form: 'login',
-})(LoginForm)
-
-
+const mapStateToProps = (state: AppRootState) => ({
+    isAuth: state.auth.isAuth
+})
+export default connect(mapStateToProps, {login})(Login)
 
