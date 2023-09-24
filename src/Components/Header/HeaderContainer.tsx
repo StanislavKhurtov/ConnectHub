@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import {connect, useDispatch} from 'react-redux';
-import {getAuthUserData, SetUsersDataAC} from '../../Redux/auth-reducer';
+import {getAuthUserData, logout, SetUsersDataAC} from 'Redux/auth-reducer';
 import {Header} from './Header';
-import {AppRootState} from "../../Redux/redux-store";
+import {AppRootState} from "Redux/redux-store";
 import {ThunkDispatch} from "redux-thunk";
 import {AnyAction} from "redux";
 
@@ -13,6 +13,7 @@ type MapStateToPropsType = {
 
 type MapDispatchToPropsType = {
     SetUsersDataAC: typeof SetUsersDataAC;
+    logout: any
 };
 
 type PropsType = MapStateToPropsType & MapDispatchToPropsType;
@@ -27,6 +28,7 @@ const HeaderContainer = (props: PropsType) => {
     return <Header
         isAuth={props.isAuth}
         login={props.login}
+        logout={props.logout}
     />;
 };
 
@@ -37,5 +39,5 @@ const mapStateToProps = (state: AppRootState): MapStateToPropsType => ({
 
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppRootState>(
     mapStateToProps,
-    {SetUsersDataAC}
+    {SetUsersDataAC, logout}
 )(HeaderContainer);
