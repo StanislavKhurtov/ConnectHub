@@ -82,4 +82,5 @@
  - 80 - инициализация приложения
  - 81 - селекторы (reselect part 1)
  - 82 - mapStateToProps (reselect часть 2)
+ - 83 - подключаем reselect (reselect часть 3)
 
