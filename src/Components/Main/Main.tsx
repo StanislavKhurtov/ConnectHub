@@ -9,11 +9,12 @@ import {DialogsContainer} from "./Section/Dialogs/DialogsContainer";
 import {UsersContainer} from "../Users/UsersContainer";
 import ProfileContainer from "./Section/Profile/ProfileContainer";
 import {Login} from "../Login/Login";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getAuthUserData} from "Redux/auth-reducer";
 import {AnyAction} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {AppRootState} from "Redux/redux-store";
+import {Preloader} from "Components/common/Preloader/Preloader";
 
 export const Main = () => {
 
@@ -25,7 +26,7 @@ export const Main = () => {
         dispatch(getAuthUserData())
     }, []);
 
-    /*if (!initialized) {
+  /*  if (initialized) {
         return <Preloader/>
     }*/
 

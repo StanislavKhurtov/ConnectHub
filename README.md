@@ -85,5 +85,5 @@
  - 83 - подключаем reselect (reselect часть 3)
  - 84 - hook, useState, хуки
  - 85 - hook, useEffect, хуки
- - 
+ - 86 - Virtual DOM
 
