@@ -1,12 +1,3 @@
-/*
-users: state.usersPage.items,
-pageSize: state.usersPage.pageSize,
-totalCount: state.usersPage.totalCount,
-currentPage: state.usersPage.currentPage,
-isFetching: state.usersPage.isFetching,
-followingInProgress: state.usersPage.followingInProgress
-*/
-
 import {AppRootState} from "Redux/redux-store";
 
 export const getUser = (state:AppRootState) => {
