@@ -86,4 +86,5 @@
  - 84 - hook, useState, хуки
  - 85 - hook, useEffect, хуки
  - 86 - Virtual DOM
+ - 87 - shouldComponentUpdate, PureComponent, memo
 
