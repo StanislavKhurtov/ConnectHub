@@ -84,4 +84,6 @@
  - 82 - mapStateToProps (reselect часть 2)
  - 83 - подключаем reselect (reselect часть 3)
  - 84 - hook, useState, хуки
+ - 85 - hook, useEffect, хуки
+ - 
 
