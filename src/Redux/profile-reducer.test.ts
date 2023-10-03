@@ -1,5 +1,5 @@
 import { v1 } from "uuid";
-import { profileReducer, addPostAC,setUserProfile } from "./profile-reducer";
+import {addPostAC, profileReducer, setUserProfile} from "./profile-reducer";
 
 describe("profileReducer", () => {
     let initialState = {
@@ -15,17 +15,17 @@ describe("profileReducer", () => {
         status: ''
     };
 
-/*
+
     it("should add a new post to the state", () => {
         const text = "New post";
-        const action = addPostAC();
+        const action = addPostAC(text);
         const newState = profileReducer(initialState, action);
 
         expect(newState.posts.length).toBe(initialState.posts.length + 1);
         expect(newState.posts[newState.posts.length - 1].message).toBe("");
         expect(newState.posts[newState.posts.length - 1].likesCount).toBe(0);
     });
-*/
+
 
 
 
