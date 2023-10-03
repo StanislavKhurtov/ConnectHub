@@ -1,13 +1,12 @@
 import React from "react";
 import s from "./users.module.css";
-import {followUser, unfollowUser, UsersPageType} from "../../Redux/users-reducer";
+import { followUser, unfollowUser, UsersPageType } from "../../Redux/users-reducer";
 import userPhoto from '../../assets/images/1.jpg'
-import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {ThunkDispatch} from "redux-thunk";
-import {AppRootState} from "../../Redux/redux-store";
-import {AnyAction} from "redux";
-
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { AppRootState } from "../../Redux/redux-store";
+import { AnyAction } from "redux";
 
 type UsersTypeProps = {
     users: Array<UsersPageType>
@@ -21,7 +20,6 @@ type UsersTypeProps = {
     currentPage: number
     onPageChanged: any
     followingInProgress: number[]
-
 };
 
 export const Users = (props: UsersTypeProps) => {
@@ -30,8 +28,7 @@ export const Users = (props: UsersTypeProps) => {
         currentPage,
         pageSize,
         totalCount,
-
-
+        onPageChanged,
     } = props;
 
     const dispatch = useDispatch<ThunkDispatch<AppRootState, any, AnyAction>>()
@@ -46,6 +43,30 @@ export const Users = (props: UsersTypeProps) => {
     for (let i = startPage; i <= endPage; i++) {
         pages.push(i);
     }
+
+    const goToPrevPage = () => {
+        if (currentPage > 1) {
+            onPageChanged(currentPage - 1);
+        }
+    };
+
+    const goToNextPage = () => {
+        if (currentPage < pageCount) {
+            onPageChanged(currentPage + 1);
+        }
+    };
+
+    const goToFirstPage = () => {
+        if (currentPage !== 1) {
+            onPageChanged(1);
+        }
+    };
+
+    const goToLastPage = () => {
+        if (currentPage !== pageCount) {
+            onPageChanged(pageCount);
+        }
+    };
 
     return (
         <div>
@@ -62,19 +83,24 @@ export const Users = (props: UsersTypeProps) => {
                             </NavLink>
                         </div>
                         <div>
-                            {el.followed
-                                ? (
+                            {el.followed ? (
                                 <button
-                                    disabled={props.followingInProgress.some(id => id === el.id)}
-                                    onClick={() => {dispatch(unfollowUser(el.id))}
-                                }>Unfollow
+                                    disabled={props.followingInProgress.some((id) => id === el.id)}
+                                    onClick={() => {
+                                        dispatch(unfollowUser(el.id))
+                                    }}
+                                >
+                                    Unfollow
                                 </button>
-                            )
-                                : (
+                            ) : (
                                 <button
-                                    disabled={props.followingInProgress.some(id => id === el.id)}
-                                    onClick={() => {dispatch(followUser(el.id))}}
-                                >Follow</button>
+                                    disabled={props.followingInProgress.some((id) => id === el.id)}
+                                    onClick={() => {
+                                        dispatch(followUser(el.id))
+                                    }}
+                                >
+                                    Follow
+                                </button>
                             )}
                         </div>
                     </div>
@@ -91,15 +117,27 @@ export const Users = (props: UsersTypeProps) => {
                 </div>
             ))}
             <div className={s.pagination}>
+                <button onClick={goToFirstPage} disabled={currentPage === 1}>
+                    {"<<"}
+                </button>
+                <button onClick={goToPrevPage} disabled={currentPage === 1}>
+                    {"<"}
+                </button>
                 {pages.map((p) => (
                     <span
                         key={p}
                         className={currentPage === p ? s.selectedPage : ""}
-                        onClick={() => props.onPageChanged(p)}
+                        onClick={() => onPageChanged(p)}
                     >
             {p}
           </span>
                 ))}
+                <button onClick={goToNextPage} disabled={currentPage === pageCount}>
+                    {">"}
+                </button>
+                <button onClick={goToLastPage} disabled={currentPage === pageCount}>
+                    {">>"}
+                </button>
             </div>
         </div>
     );
