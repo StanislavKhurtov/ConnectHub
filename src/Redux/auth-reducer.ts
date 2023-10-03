@@ -5,7 +5,7 @@ import {AppRootState} from "Redux/redux-store";
 import {stopSubmit} from "redux-form";
 
 
-const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_DATA = 'auth/SET_USER_DATA';
 
 const initialState = {
     userId: null as number | null,
@@ -32,14 +32,13 @@ export const SetUsersDataAC = (userId: number | null, email: string | null, logi
     payload: {userId, email, login, isAuth},
 });
 
-export const getAuthUserData = () => (dispatch: Dispatch) => {
-    return authAPI.me()
-        .then((response) => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data;
-                dispatch(SetUsersDataAC(id, email, login, true))
-            }
-        });
+export const getAuthUserData = () => async (dispatch: Dispatch) => {
+    const response = await authAPI.me()
+    if (response.data.resultCode === 0) {
+        let {id, email, login} = response.data.data;
+        dispatch(SetUsersDataAC(id, email, login, true))
+    }
+
 }
 
 export const login = (email: string, password: string, rememberMe: boolean): ThunkAction<void, AppRootState, unknown, AnyAction> => (dispatch: ThunkDispatch<AppRootState, unknown, AnyAction>) => {
@@ -49,7 +48,7 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
                 dispatch(getAuthUserData())
             } else {
                 let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error'
-                dispatch(stopSubmit('login',{_error: message}))
+                dispatch(stopSubmit('login', {_error: message}))
             }
         });
 }
