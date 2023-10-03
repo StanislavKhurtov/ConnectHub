@@ -6,7 +6,6 @@ import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 export const App = () => {
-
     return (
         <div className="app-wrapper">
             <HeaderContainer />
