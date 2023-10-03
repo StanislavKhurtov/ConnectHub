@@ -34,7 +34,7 @@ type AddNewProFormType = {
     handleSubmit: FormEventHandler<HTMLFormElement> | undefined
 }
 
-const maxLength10 = maxLengthCreator(10)
+const maxLength10 = maxLengthCreator(150)
 
 const AddNewPostForm = (props: AddNewProFormType) => {
     return <form onSubmit={props.handleSubmit}>
