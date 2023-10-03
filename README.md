@@ -88,4 +88,5 @@
  - 86 - Virtual DOM
  - 87 - shouldComponentUpdate, PureComponent, memo
  - 88 - pure function (чистая функция)
+ - 89 - Тесты, jest, tdd, тестируем reducer
 

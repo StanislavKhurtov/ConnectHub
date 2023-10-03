@@ -1,6 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
 
-
 type EditableSpanType = {
     title: string
     onChange: (newValue: string) => void
