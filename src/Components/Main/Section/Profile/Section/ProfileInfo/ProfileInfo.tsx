@@ -1,7 +1,6 @@
 import React from "react";
-import {Image} from "../Image/Image";
 import {Avatar} from "../Avatar/Avatar";
-import {Preloader} from "../../../../../common/Preloader/Preloader";
+import {Preloader} from "Components/common/Preloader/Preloader";
 import {ProfileType} from "../../Profile";
 
 
